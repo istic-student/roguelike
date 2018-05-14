@@ -11,8 +11,10 @@ namespace Assets.Scripts.Player
         public int PlayerNumber;
         public bool IsMoving;
         public int Direction = 2; // 0 : north | 1 : east | 2 : south | 3 : west 
-
         public float AnimationTolerance = 0.1f;
+
+        public delegate void PlayerChangeHandler(PlayerController playerController);
+        public event PlayerChangeHandler PlayerChange;
 
         private Rigidbody2D _rigidbody2D;
 
@@ -52,6 +54,12 @@ namespace Assets.Scripts.Player
                 else if (axisHorizontal < 0)
                     Direction = 3;
             }
+        }
+
+        public void Notify()
+        {
+            if (PlayerChange != null)
+                PlayerChange(this);
         }
 
     }
