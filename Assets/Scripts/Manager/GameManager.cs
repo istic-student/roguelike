@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using Assets.Scripts.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.Manager
@@ -29,6 +31,22 @@ namespace Assets.Scripts.Manager
         private void OnEnable()
         {
             AssetsManager = GetComponent<AssetsManager>();
+        }
+
+        private void Start()
+        {
+            StartCoroutine(Test());
+        }
+
+        private IEnumerator Test()
+        {
+            yield return new WaitForSeconds(1);
+            foreach (var player in AssetsManager.Players)
+            {
+                var h = player.GetComponent<Health>();
+                if (h != null)
+                    h.TakeDamage(10);
+            }
         }
 
         private void Update()

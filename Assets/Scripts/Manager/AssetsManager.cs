@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Player;
+using Assets.Scripts.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.Manager
@@ -8,6 +9,7 @@ namespace Assets.Scripts.Manager
 
         [Header("UI")]
         public PlayerController[] Players;
+        public PlayerUI PlayerUIPrefab;
 
     }
 }

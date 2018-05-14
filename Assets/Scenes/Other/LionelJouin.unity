@@ -234,6 +234,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114144424914782540, guid: 7b5603fef3656a84cac9300fea823acd,
+        type: 2}
+      propertyPath: Players.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4492446638422692, guid: 7b5603fef3656a84cac9300fea823acd, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1.7569361
@@ -271,11 +276,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114148637982092020, guid: 7b5603fef3656a84cac9300fea823acd,
+    - target: {fileID: 114144424914782540, guid: 7b5603fef3656a84cac9300fea823acd,
         type: 2}
-      propertyPath: m_FontData.m_BestFit
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: Players.Array.data[0]
+      value: 
+      objectReference: {fileID: 1738278214}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b5603fef3656a84cac9300fea823acd, type: 2}
   m_IsPrefabParent: 0
@@ -321,6 +326,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c286c6d7b51251449b7537405041610, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1738278214 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114782445592140166, guid: 7c286c6d7b51251449b7537405041610,
+    type: 2}
+  m_PrefabInternal: {fileID: 1408739302}
+  m_Script: {fileID: 11500000, guid: f59f302420646904282c388afe791e7d, type: 3}
 --- !u!1 &1888920676
 GameObject:
   m_ObjectHideFlags: 0
