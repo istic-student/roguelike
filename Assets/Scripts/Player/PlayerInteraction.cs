@@ -5,6 +5,9 @@ namespace Assets.Scripts.Player
     public class PlayerInteraction : MonoBehaviour
     {
 
+        [HideInInspector]
+        public Interactive.Abstract.Interactive ColliderInteractive;
+
         private PlayerController _playerController;
         private Joystick _joystick;
 
@@ -29,6 +32,7 @@ namespace Assets.Scripts.Player
 
             if (Input.GetButtonDown(_joystick.Use))
             {
+
             }
 
         }

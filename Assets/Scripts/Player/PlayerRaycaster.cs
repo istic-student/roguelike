@@ -8,24 +8,30 @@ namespace Assets.Scripts.Player
         public float RayDistance = 1.5f;
 
         private PlayerController _playerController;
+        private PlayerInteraction _playerInteraction;
 
         private void Start()
         {
             _playerController = GetComponent<PlayerController>();
+            _playerInteraction = GetComponent<PlayerInteraction>();
         }
 
         private void Update()
         {
-
             var direction = GetVectorDirection();
             var hit = Physics2D.Raycast(transform.position, direction, RayDistance);
-            if (hit.collider != null)
-            {
-                Debug.Log(hit.collider);
-            }
+            SetColliderInteractive(hit);
 
             Debug.DrawRay(transform.position, direction * RayDistance, Color.green);
+        }
 
+        private void SetColliderInteractive(RaycastHit2D hit)
+        {
+            var colliderInteractive = hit.collider.GetComponent<Interactive.Abstract.Interactive>();
+            if (hit.collider == null && _playerInteraction.ColliderInteractive != null)
+                _playerInteraction.ColliderInteractive = null;
+            else if (hit.collider != null && colliderInteractive.Equals(_playerInteraction.ColliderInteractive))
+                _playerInteraction.ColliderInteractive = colliderInteractive;
         }
 
         private Vector2 GetVectorDirection()
