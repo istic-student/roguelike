@@ -11,29 +11,31 @@ namespace Assets.Scripts.Player
         public int PlayerNumber;
         public bool IsMoving;
         public int Direction = 2; // 0 : north | 1 : east | 2 : south | 3 : west 
-
         public float AnimationTolerance = 0.1f;
 
-        private CharacterController _characterController;
+        public delegate void PlayerChangeHandler(PlayerController playerController);
+        public event PlayerChangeHandler PlayerChange;
+
+        private Rigidbody2D _rigidbody2D;
 
         private void Start()
         {
             Joystick = new Joystick(PlayerNumber);
-            _characterController = GetComponent<CharacterController>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
         private void FixedUpdate()
         {
             var axisHorizontal = Input.GetAxisRaw(Joystick.Horizontal);
             var axisVertical = Input.GetAxisRaw(Joystick.Vertical);
-            var moveDirection = new Vector3(axisHorizontal, axisVertical, 0);
+            var moveDirection = new Vector2(axisHorizontal, axisVertical);
             var speed = Speed;
 
             SetDirection(axisHorizontal, axisVertical);
 
             IsMoving = Math.Abs(axisVertical) > AnimationTolerance || Math.Abs(axisHorizontal) > AnimationTolerance;
-
-            _characterController.Move(moveDirection.normalized * Time.deltaTime * speed);
+            
+            _rigidbody2D.velocity = moveDirection.normalized * speed;
         }
 
         private void SetDirection(float axisHorizontal, float axisVertical)
@@ -52,6 +54,12 @@ namespace Assets.Scripts.Player
                 else if (axisHorizontal < 0)
                     Direction = 3;
             }
+        }
+
+        public void Notify()
+        {
+            if (PlayerChange != null)
+                PlayerChange(this);
         }
 
     }
