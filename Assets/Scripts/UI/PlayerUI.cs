@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Player;
+using Assets.Scripts.Player.Inventory;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,7 +35,7 @@ namespace Assets.Scripts.UI
             if (inventory == null)
                 return;
             var str = "";
-            foreach (var item in inventory.Items)
+            foreach (var item in inventory.Consumables)
             {
                 str += item + ", ";
             }

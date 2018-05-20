@@ -27,10 +27,13 @@ namespace Assets.Scripts.Player
 
         private void SetColliderInteractive(RaycastHit2D hit)
         {
-            var colliderInteractive = hit.collider.GetComponent<Interactive.Abstract.Interactive>();
-            if (hit.collider == null && _playerInteraction.ColliderInteractive != null)
+            Interactive.Abstract.Interactive colliderInteractive = null;
+            if (hit.collider != null)
+                colliderInteractive = hit.collider.GetComponent<Interactive.Abstract.Interactive>();
+
+            if (colliderInteractive == null && _playerInteraction.ColliderInteractive != null)
                 _playerInteraction.ColliderInteractive = null;
-            else if (hit.collider != null && colliderInteractive.Equals(_playerInteraction.ColliderInteractive))
+            else if (colliderInteractive != null && colliderInteractive.Equals(_playerInteraction.ColliderInteractive))
                 _playerInteraction.ColliderInteractive = colliderInteractive;
         }
 
