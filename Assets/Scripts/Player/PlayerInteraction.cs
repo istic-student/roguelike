@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Interactive.Abstract;
+using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
@@ -28,11 +29,11 @@ namespace Assets.Scripts.Player
 
             if (Input.GetButtonDown(_joystick.Action))
             {
+                GetComponent<Inventory.Inventory>().Add(ColliderInteractive as Catchable);
             }
 
             if (Input.GetButtonDown(_joystick.Use))
             {
-
             }
 
         }

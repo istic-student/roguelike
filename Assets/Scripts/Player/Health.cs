@@ -8,14 +8,14 @@ namespace Assets.Scripts.Player
         public int StartingHealth = 100;
         public int CurrentHealth { get; private set;  }
 
-        private Inventory _inventory;
+        private Inventory.Inventory _inventory;
         private PlayerController _playerController;
 
         private void Start()
         {
             CurrentHealth = 100;
             _playerController = GetComponent<PlayerController>();
-            _inventory = GetComponent<Inventory>();
+            _inventory = GetComponent<Inventory.Inventory>();
             _playerController.Notify();
         }
 
@@ -27,9 +27,9 @@ namespace Assets.Scripts.Player
             _playerController.Notify();
         }
 
-        void Die()
+        private void Die()
         {
-            _inventory.DropAll();
+            _inventory.DropAllConsumable();
             _playerController.Notify();
         }
 
