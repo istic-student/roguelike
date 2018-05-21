@@ -5,8 +5,8 @@ namespace Assets.Scripts.Player
     public class Health : MonoBehaviour
     {
 
-        public int StartingHealth = 100;
-        public int CurrentHealth { get; private set;  }
+        public float StartingHealth = 100f;
+        public float CurrentHealth { get; private set;  }
 
         private Inventory.Inventory _inventory;
         private PlayerController _playerController;
@@ -19,8 +19,10 @@ namespace Assets.Scripts.Player
             _playerController.Notify();
         }
 
-        public void TakeDamage(int amount)
+        public void TakeDamage(float amount)
         {
+            amount -= _inventory.Protection();
+            if (amount < 0) amount = 0;
             CurrentHealth -= amount;
             if (CurrentHealth <= 0)
                 Die();
@@ -29,7 +31,7 @@ namespace Assets.Scripts.Player
 
         private void Die()
         {
-            _inventory.DropAllConsumable();
+            _inventory.DropAllConsumables();
             _playerController.Notify();
         }
 
