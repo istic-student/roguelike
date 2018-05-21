@@ -25,6 +25,7 @@ namespace Assets.Scripts.Player.Inventory
                 return;
             AddConsumable(item as Consumable);
             AddPassive(item as Passive);
+            AddEquipment(item as Equipment);
         }
 
         public void AddConsumable(Consumable consumable)
@@ -37,11 +38,22 @@ namespace Assets.Scripts.Player.Inventory
 
         public void DropConsumable(Consumable consumable)
         {
+            if (consumable == null)
+                return;
             Consumables.Remove(consumable);
             _playerController.Notify();
         }
 
-        public void DropAllConsumable()
+        public void DestroyConsumable(Consumable consumable)
+        {
+            if (consumable == null)
+                return;
+            Consumables.Remove(consumable);
+            Destroy(consumable.gameObject);
+            _playerController.Notify();
+        }
+
+        public void DropAllConsumables()
         {
             foreach (var consumable in Consumables)
             {
@@ -49,10 +61,14 @@ namespace Assets.Scripts.Player.Inventory
             }
         }
 
-        public void TryToUse()
+        public void TryToUse(Activable objectToActive)
         {
             foreach (var consumable in Consumables)
             {
+                if (!objectToActive.Active(consumable))
+                    continue;
+                DestroyConsumable(consumable);
+                return;
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Interactive;
 
 namespace Assets.Scripts.Player.Inventory
@@ -18,10 +19,32 @@ namespace Assets.Scripts.Player.Inventory
             }
         }
 
+        public void AddEquipment(Equipment equipment)
+        {
+            if (equipment == null)
+                return;
+            if (_equipment[equipment.Type] != null)
+                DropEquipment(_equipment[equipment.Type]);
+            _equipment[equipment.Type] = equipment;
+            _playerController.Notify();
+        }
+
         public void DropEquipment(Equipment equipment)
         {
+            if (equipment == null)
+                return;
             _equipment[equipment.Type] = null;
             _playerController.Notify();
+        }
+
+        public float Attack()
+        {
+            return _equipment.Where(equipment => equipment.Value != null).Sum(equipment => equipment.Value.Attack);
+        }
+
+        public float Protection()
+        {
+            return _equipment.Where(equipment => equipment.Value != null).Sum(equipment => equipment.Value.DamageAbsorption);
         }
 
     }
