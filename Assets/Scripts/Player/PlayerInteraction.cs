@@ -31,23 +31,30 @@ namespace Assets.Scripts.Player
             }
 
             if (Input.GetButtonDown(_joystick.Action))
-            {
-                _inventory.Add(ColliderInteractive as Catchable);
-            }
+                Action();
 
             if (Input.GetButtonDown(_joystick.Use))
-            {
-                var activable = ColliderInteractive as Activable;
-                if (activable != null)
-                {
-                    if (!activable.Active())
-                        _inventory.TryToUse(activable);
-                }
-            }
+                Use();
 
+            if (Input.GetButtonDown(_joystick.Attack))
+                Attack();
         }
 
-        public void Attack()
+        private void Action()
+        {
+            _inventory.Add(ColliderInteractive as Catchable);
+        }
+
+        private void Use()
+        {
+            var activable = ColliderInteractive as Activable;
+            if (activable == null) return;
+
+            if (!activable.Active())
+                _inventory.TryToUse(activable);
+        }
+
+        private void Attack()
         {
             // todo : CircleCast range
         }
