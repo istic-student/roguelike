@@ -33,7 +33,7 @@ namespace Assets.Scripts.Player
 
             if (colliderInteractive == null && _playerInteraction.ColliderInteractive != null)
                 _playerInteraction.ColliderInteractive = null;
-            else if (colliderInteractive != null && colliderInteractive.Equals(_playerInteraction.ColliderInteractive))
+            else if (colliderInteractive != null && !colliderInteractive.Equals(_playerInteraction.ColliderInteractive))
                 _playerInteraction.ColliderInteractive = colliderInteractive;
         }
 
