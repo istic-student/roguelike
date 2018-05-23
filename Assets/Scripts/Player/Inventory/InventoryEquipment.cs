@@ -8,6 +8,11 @@ namespace Assets.Scripts.Player.Inventory
     public partial class Inventory
     {
 
+        public Equipment Weapon
+        {
+            get { return _equipment[EquipmentEnum.Weapon]; }
+        }
+
         private IDictionary<EquipmentEnum, Equipment> _equipment;
 
         private void InitEquipment()

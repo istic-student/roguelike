@@ -7,6 +7,8 @@ namespace Assets.Scripts.Player
     public class PlayerInteraction : MonoBehaviour
     {
 
+        public float DammageWithoutWeapon;
+
         [HideInInspector]
         public Interactive.Abstract.Interactive ColliderInteractive;
 
@@ -42,7 +44,10 @@ namespace Assets.Scripts.Player
 
         private void Action()
         {
-            _inventory.Add(ColliderInteractive as Catchable);
+            var catchable = ColliderInteractive as Catchable;
+            if (catchable == null) return;
+            Debug.Log("Action : " + catchable);
+            _inventory.Add(catchable);
         }
 
         private void Use()
@@ -50,13 +55,16 @@ namespace Assets.Scripts.Player
             var activable = ColliderInteractive as Activable;
             if (activable == null) return;
 
+            Debug.Log("Use : " + activable);
             if (!activable.Active())
                 _inventory.TryToUse(activable);
         }
 
         private void Attack()
         {
-            // todo : CircleCast range
+            Debug.Log("Attack");
+            if (_inventory.Weapon != null)
+                _inventory.Weapon.Use();
         }
 
     }
