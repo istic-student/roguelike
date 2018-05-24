@@ -6,17 +6,17 @@ namespace Assets.Scripts.Player
     {
 
         public float StartingHealth = 100f;
-        public float CurrentHealth { get; private set;  }
+        public float CurrentHealth { get; private set; }
 
         private Inventory.Inventory _inventory;
-        private PlayerController _playerController;
+
+        public delegate void HealthChangeHandler();
+        public event HealthChangeHandler HealthChange;
 
         private void Start()
         {
             CurrentHealth = 100;
-            _playerController = GetComponent<PlayerController>();
             _inventory = GetComponent<Inventory.Inventory>();
-            _playerController.Notify();
         }
 
         public void TakeDamage(float amount)
@@ -26,13 +26,19 @@ namespace Assets.Scripts.Player
             CurrentHealth -= amount;
             if (CurrentHealth <= 0)
                 Die();
-            _playerController.Notify();
+            OnHealthChange();
         }
 
         private void Die()
         {
             _inventory.DropAllConsumables();
-            _playerController.Notify();
+            OnHealthChange();
+        }
+
+        private void OnHealthChange()
+        {
+            if (HealthChange != null)
+                HealthChange();
         }
 
     }

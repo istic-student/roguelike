@@ -9,7 +9,7 @@ namespace Assets.Scripts.Interactive
         public float DamageAbsorption;
         public float Attack;
 
-        public void Use()
+        public virtual void Use()
         {
 
         }

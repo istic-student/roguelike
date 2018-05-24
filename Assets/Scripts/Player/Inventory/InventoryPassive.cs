@@ -18,7 +18,7 @@ namespace Assets.Scripts.Player.Inventory
             if (passive == null)
                 return;
             Passives.Add(passive);
-            _playerController.Notify();
+            OnInventoryChange();
         }
 
     }

@@ -10,11 +10,11 @@ namespace Assets.Scripts.Player.Inventory
 
         public List<Consumable> Consumables;
 
-        private PlayerController _playerController;
+        public delegate void InventoryChangeHandler();
+        public event InventoryChangeHandler InventoryChange;
 
         private void Start()
         {
-            _playerController = GetComponent<PlayerController>();
             InitEquipment();
             InitPassives();
         }
@@ -33,7 +33,7 @@ namespace Assets.Scripts.Player.Inventory
             if (consumable == null)
                 return;
             Consumables.Add(consumable);
-            _playerController.Notify();
+            OnInventoryChange();
         }
 
         public void DropConsumable(Consumable consumable)
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Player.Inventory
             if (consumable == null)
                 return;
             Consumables.Remove(consumable);
-            _playerController.Notify();
+            OnInventoryChange();
         }
 
         public void DestroyConsumable(Consumable consumable)
@@ -50,7 +50,7 @@ namespace Assets.Scripts.Player.Inventory
                 return;
             Consumables.Remove(consumable);
             Destroy(consumable.gameObject);
-            _playerController.Notify();
+            OnInventoryChange();
         }
 
         public void DropAllConsumables()
@@ -70,6 +70,12 @@ namespace Assets.Scripts.Player.Inventory
                 DestroyConsumable(consumable);
                 return;
             }
+        }
+
+        private void OnInventoryChange()
+        {
+            if (InventoryChange != null)
+                InventoryChange();
         }
 
     }
