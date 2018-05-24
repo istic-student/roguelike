@@ -6,6 +6,7 @@ namespace Assets.Scripts.Interactive
     {
 
         public List<Consumable> Unlockers;
+        public bool Actived;
 
         public bool Active()
         {
@@ -23,7 +24,8 @@ namespace Assets.Scripts.Interactive
 
         private void Unlock()
         {
-
+            if (Actived) return;;
+            Actived = true;
         }
 
     }

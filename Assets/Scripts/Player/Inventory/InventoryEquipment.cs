@@ -31,7 +31,7 @@ namespace Assets.Scripts.Player.Inventory
             if (_equipment[equipment.Type] != null)
                 DropEquipment(_equipment[equipment.Type]);
             _equipment[equipment.Type] = equipment;
-            _playerController.Notify();
+            OnInventoryChange();
         }
 
         public void DropEquipment(Equipment equipment)
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Player.Inventory
             if (equipment == null)
                 return;
             _equipment[equipment.Type] = null;
-            _playerController.Notify();
+            OnInventoryChange();
         }
 
         public float Attack()

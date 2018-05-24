@@ -17,11 +17,17 @@ namespace Assets.Scripts.Player
         public event PlayerChangeHandler PlayerChange;
 
         private Rigidbody2D _rigidbody2D;
+        private Inventory.Inventory _inventory;
+        private Health _health;
 
         private void Start()
         {
             Joystick = new Joystick(PlayerNumber);
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _inventory = GetComponent<Inventory.Inventory>();
+            _health = GetComponent<Health>();
+            _health.HealthChange += Notify;
+            _inventory.InventoryChange += Notify;
         }
 
         private void FixedUpdate()
@@ -34,7 +40,7 @@ namespace Assets.Scripts.Player
             SetDirection(axisHorizontal, axisVertical);
 
             IsMoving = Math.Abs(axisVertical) > AnimationTolerance || Math.Abs(axisHorizontal) > AnimationTolerance;
-            
+
             _rigidbody2D.velocity = moveDirection.normalized * speed;
         }
 
