@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Assets.Scripts.Character
 {
-    public class PlayerRaycaster : MonoBehaviour
+    public class CharacterRaycaster : MonoBehaviour
     {
 
         public float RayDistance = 1.5f;
 
-        private PlayerController _playerController;
-        private PlayerInteraction _playerInteraction;
+        private CharacterController _characterController;
+        private CharacterInteraction _characterInteraction;
 
         private void Start()
         {
-            _playerController = GetComponent<PlayerController>();
-            _playerInteraction = GetComponent<PlayerInteraction>();
+            _characterController = GetComponent<CharacterController>();
+            _characterInteraction = GetComponent<CharacterInteraction>();
         }
 
         private void Update()
@@ -31,15 +31,15 @@ namespace Assets.Scripts.Player
             if (hit.collider != null)
                 colliderInteractive = hit.collider.GetComponent<Interactive.Abstract.Interactive>();
 
-            if (colliderInteractive == null && _playerInteraction.ColliderInteractive != null)
-                _playerInteraction.ColliderInteractive = null;
-            else if (colliderInteractive != null && !colliderInteractive.Equals(_playerInteraction.ColliderInteractive))
-                _playerInteraction.ColliderInteractive = colliderInteractive;
+            if (colliderInteractive == null && _characterInteraction.ColliderInteractive != null)
+                _characterInteraction.ColliderInteractive = null;
+            else if (colliderInteractive != null && !colliderInteractive.Equals(_characterInteraction.ColliderInteractive))
+                _characterInteraction.ColliderInteractive = colliderInteractive;
         }
 
         private Vector2 GetVectorDirection()
         {
-            switch (_playerController.Direction)
+            switch (_characterController.Direction)
             {
                 case 0:
                     return Vector2.up;

@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Assets.Scripts.Character
 {
-    public class PlayerAnimatorController : MonoBehaviour
+    public class CharacterAnimatorController : MonoBehaviour
     {
 
-        private PlayerController _playerController;
+        private CharacterController _characterController;
         private Animator _animator;
         private SpriteRenderer _spriteRenderer;
 
         private void Start()
         {
-            _playerController = GetComponent<PlayerController>();
+            _characterController = GetComponent<CharacterController>();
             _animator = GetComponentInChildren<Animator>();
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
         private void Update()
         {
-            switch (_playerController.Direction)
+            switch (_characterController.Direction)
             {
                 case 1:
                     _spriteRenderer.flipX = true;
@@ -28,8 +28,8 @@ namespace Assets.Scripts.Player
                     break;
             }
 
-            _animator.SetInteger("Direction", _playerController.Direction);
-            _animator.SetBool("Moving", _playerController.IsMoving);
+            _animator.SetInteger("Direction", _characterController.Direction);
+            _animator.SetBool("Moving", _characterController.IsMoving);
         }
     }
 }

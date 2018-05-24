@@ -3,7 +3,7 @@ using Assets.Scripts.Interactive;
 using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
-namespace Assets.Scripts.Player.Inventory
+namespace Assets.Scripts.Character.Inventory
 {
     public partial class Inventory : MonoBehaviour
     {
