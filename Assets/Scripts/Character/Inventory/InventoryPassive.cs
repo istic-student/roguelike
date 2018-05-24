@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Interactive;
 
-namespace Assets.Scripts.Player.Inventory
+namespace Assets.Scripts.Character.Inventory
 {
     public partial class Inventory
     {

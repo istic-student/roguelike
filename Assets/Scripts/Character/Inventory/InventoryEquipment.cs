@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Interactive;
 
-namespace Assets.Scripts.Player.Inventory
+namespace Assets.Scripts.Character.Inventory
 {
     public partial class Inventory
     {

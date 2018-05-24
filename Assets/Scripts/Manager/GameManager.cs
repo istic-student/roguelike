@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using Assets.Scripts.Player;
+using Assets.Scripts.Character;
 using UnityEngine;
 
 namespace Assets.Scripts.Manager

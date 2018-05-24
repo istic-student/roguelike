@@ -2,47 +2,22 @@
 using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Assets.Scripts.Character
 {
-    public class PlayerInteraction : MonoBehaviour
+    public class CharacterInteraction : MonoBehaviour
     {
-
-        public float DammageWithoutWeapon;
 
         [HideInInspector]
         public Interactive.Abstract.Interactive ColliderInteractive;
 
-        private PlayerController _playerController;
         private Inventory.Inventory _inventory;
-        private Joystick _joystick;
 
-        private void Start()
+        public void Start()
         {
-            _playerController = GetComponent<PlayerController>();
             _inventory = GetComponent<Inventory.Inventory>();
-            _joystick = _playerController.Joystick;
         }
 
-        private void Update()
-        {
-            if (_joystick == null)
-            {
-                _playerController = GetComponent<PlayerController>();
-                _joystick = _playerController.Joystick;
-                return;
-            }
-
-            if (Input.GetButtonDown(_joystick.Action))
-                Action();
-
-            if (Input.GetButtonDown(_joystick.Use))
-                Use();
-
-            if (Input.GetButtonDown(_joystick.Attack))
-                Attack();
-        }
-
-        private void Action()
+        public void Action()
         {
             var catchable = ColliderInteractive as Catchable;
             if (catchable == null) return;
@@ -50,7 +25,7 @@ namespace Assets.Scripts.Player
             _inventory.Add(catchable);
         }
 
-        private void Use()
+        public void Use()
         {
             var activable = ColliderInteractive as Activable;
             if (activable == null) return;
@@ -60,7 +35,7 @@ namespace Assets.Scripts.Player
                 _inventory.TryToUse(activable);
         }
 
-        private void Attack()
+        public void Attack()
         {
             Debug.Log("Attack");
             if (_inventory.Weapon != null)
