@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Interactive;
 
-namespace Assets.Scripts.Player.Inventory
+namespace Assets.Scripts.Character.Inventory
 {
     public partial class Inventory
     {
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Player.Inventory
             if (passive == null)
                 return;
             Passives.Add(passive);
-            _playerController.Notify();
+            OnInventoryChange();
         }
 
     }
