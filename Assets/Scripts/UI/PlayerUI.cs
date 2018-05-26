@@ -1,7 +1,8 @@
-﻿using Assets.Scripts.Player;
-using Assets.Scripts.Player.Inventory;
+﻿using Assets.Scripts.Character;
+using Assets.Scripts.Player;
 using UnityEngine;
 using UnityEngine.UI;
+using Inventory = Assets.Scripts.Character.Inventory.Inventory;
 
 namespace Assets.Scripts.UI
 {
