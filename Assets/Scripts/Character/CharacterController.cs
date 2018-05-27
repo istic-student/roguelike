@@ -11,6 +11,25 @@ namespace Assets.Scripts.Character
         public int Direction = 2; // 0 : north | 1 : east | 2 : south | 3 : west 
         public float AnimationTolerance = 0.1f;
 
+        public Vector2 VectorDirection
+        {
+            get
+            {
+                switch (Direction)
+                {
+                    case 0:
+                        return Vector2.up;
+                    case 1:
+                        return Vector2.right;
+                    case 2:
+                        return Vector2.down;
+                    case 3:
+                        return Vector2.left;
+                }
+                return Vector2.up;
+            }
+        }
+
         private Rigidbody2D _rigidbody2D;
         private Health _health;
 

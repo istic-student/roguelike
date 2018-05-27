@@ -18,7 +18,7 @@ namespace Assets.Scripts.Character
 
         private void Update()
         {
-            var direction = GetVectorDirection();
+            var direction = _characterController.VectorDirection;
             var hit = Physics2D.Raycast(transform.position, direction, RayDistance);
             SetColliderInteractive(hit);
 
@@ -35,22 +35,6 @@ namespace Assets.Scripts.Character
                 _characterInteraction.ColliderInteractive = null;
             else if (colliderInteractive != null && !colliderInteractive.Equals(_characterInteraction.ColliderInteractive))
                 _characterInteraction.ColliderInteractive = colliderInteractive;
-        }
-
-        private Vector2 GetVectorDirection()
-        {
-            switch (_characterController.Direction)
-            {
-                case 0:
-                    return Vector2.up;
-                case 1:
-                    return Vector2.right;
-                case 2:
-                    return Vector2.down;
-                case 3:
-                    return Vector2.left;
-            }
-            return Vector2.up;
         }
 
     }

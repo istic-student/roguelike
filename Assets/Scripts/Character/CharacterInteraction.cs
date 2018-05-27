@@ -37,7 +37,7 @@ namespace Assets.Scripts.Character
 
         public void Attack()
         {
-            Debug.Log("Attack");
+            Debug.Log("Attack with " + _inventory.Weapon);
             if (_inventory.Weapon != null)
                 _inventory.Weapon.Use();
         }
