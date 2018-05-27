@@ -14,7 +14,6 @@ namespace Assets.Scripts.Manager
         public UIManager UIManager;
 
         [Header("Game")]
-
         private float _time;
 
         void Awake()

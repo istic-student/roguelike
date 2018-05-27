@@ -6,18 +6,25 @@ namespace Assets.Scripts.Character.Inventory
     public partial class Inventory
     {
 
-        public List<Passive> Passives;
-
+        private List<Passive> _passives;
+        
+        /// <summary>
+        /// Init passives (on Start)
+        /// </summary>
         private void InitPassives()
         {
-            Passives = new List<Passive>();
+            _passives = new List<Passive>();
         }
 
+        /// <summary>
+        /// Add passive
+        /// </summary>
+        /// <param name="passive">Passive to add</param>
         public void AddPassive(Passive passive)
         {
             if (passive == null)
                 return;
-            Passives.Add(passive);
+            _passives.Add(passive);
             OnInventoryChange();
         }
 
