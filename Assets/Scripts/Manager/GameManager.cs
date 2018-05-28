@@ -42,7 +42,7 @@ namespace Assets.Scripts.Manager
             yield return new WaitForSeconds(1);
             foreach (var player in AssetsManager.Players)
             {
-                var h = player.GetComponent<Health>();
+                var h = player.GetComponent<CharacterHealth>();
                 if (h != null)
                     h.TakeDamage(10);
             }

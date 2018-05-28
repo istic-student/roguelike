@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Interactive.Catchable;
+using UnityEngine;
 
 namespace Assets.Scripts.Interactive.Abstract
 {
@@ -15,7 +16,7 @@ namespace Assets.Scripts.Interactive.Abstract
         /// <returns>Activation has worked</returns>
         public virtual bool Active()
         {
-            if (Actived || Unlockers != null) return false;
+            if (Actived || Unlockers != null && Unlockers.Count > 0) return false;
             ActiveToUnlock();
             return true;
         }
