@@ -31,11 +31,11 @@ namespace Assets.Scripts.Character
         }
 
         private Rigidbody2D _rigidbody2D;
-        private Health _health;
+        private CharacterHealth _characterHealth;
 
         public void Start()
         {
-            _health = GetComponent<Health>();
+            _characterHealth = GetComponent<CharacterHealth>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 

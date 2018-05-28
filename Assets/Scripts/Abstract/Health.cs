@@ -1,33 +1,33 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Character
+namespace Assets.Scripts.Abstract
 {
-    public class Health : MonoBehaviour
+    public abstract class Health : MonoBehaviour
     {
 
         public float StartingHealth = 100f;
         public float CurrentHealth { get; private set; }
-
-        private Inventory.Inventory _inventory;
 
         public delegate void HealthChangeHandler();
         public event HealthChangeHandler HealthChange;
 
         private void Start()
         {
-            CurrentHealth = 100;
-            _inventory = GetComponent<Inventory.Inventory>();
+            CurrentHealth = StartingHealth;
+            Init();
         }
 
+        protected abstract void Init();
+
         /// <summary>
-        /// calculates the actual damage with the protection and reduces Current Health
+        /// calculates the actual damage with the protection and reduces CurrentHealth
         /// </summary>
         /// <param name="amount">Amount of damages</param>
-        public void TakeDamage(float amount)
+        public virtual void TakeDamage(float amount)
         {
-            Debug.Log("TakeDamage (" + amount + ") " + gameObject);
-            if (_inventory != null)
-                amount -= _inventory.Protection();
+            if (CurrentHealth <= 0)
+                return;
+            Debug.Log(gameObject.name + " TakeDamage (" + amount + ")");
             if (amount < 0) amount = 0;
             CurrentHealth -= amount;
             if (CurrentHealth <= 0)
@@ -38,15 +38,9 @@ namespace Assets.Scripts.Character
         /// <summary>
         /// Health is less or equal to 0
         /// </summary>
-        protected virtual void Die()
-        {
-            Debug.Log("Die " + gameObject);
-            if (_inventory != null)
-                _inventory.DropAllConsumables();
-            OnHealthChange();
-        }
+        protected abstract void Die();
 
-        private void OnHealthChange()
+        protected void OnHealthChange()
         {
             if (HealthChange != null)
                 HealthChange();
