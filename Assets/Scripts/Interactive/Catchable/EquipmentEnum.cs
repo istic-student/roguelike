@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Interactive
+﻿namespace Assets.Scripts.Interactive.Catchable
 {
     public enum EquipmentEnum
     {

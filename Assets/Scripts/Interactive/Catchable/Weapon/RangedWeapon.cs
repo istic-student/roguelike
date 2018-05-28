@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Interactive.Weapon
+﻿namespace Assets.Scripts.Interactive.Catchable.Weapon
 {
     public class RangedWeapon : Equipment
     {

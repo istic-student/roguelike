@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Interactive;
+using Assets.Scripts.Interactive.Catchable;
 
 namespace Assets.Scripts.Character.Inventory
 {

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Interactive;
+using Assets.Scripts.Interactive.Catchable;
 
 namespace Assets.Scripts.Character.Inventory
 {

@@ -1,8 +1,6 @@
-﻿using Assets.Scripts.Interactive.Abstract;
-
-namespace Assets.Scripts.Interactive
+﻿namespace Assets.Scripts.Interactive.Catchable
 {
-    public class Equipment : Catchable
+    public class Equipment : Abstract.Catchable
     {
 
         public EquipmentEnum Type;

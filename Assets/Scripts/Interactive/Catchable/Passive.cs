@@ -1,9 +1,8 @@
-﻿using Assets.Scripts.Interactive.Abstract;
-using Assets.Scripts.Player;
+﻿using Assets.Scripts.Player;
 
-namespace Assets.Scripts.Interactive
+namespace Assets.Scripts.Interactive.Catchable
 {
-    public class Passive : Catchable
+    public class Passive : Abstract.Catchable
     {
 
         public PlayerController Owner;
