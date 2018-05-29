@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using Assets.Scripts.Utils;
+using UnityEngine;
 
 namespace Assets.Scripts.Character
 {
@@ -6,6 +8,7 @@ namespace Assets.Scripts.Character
     {
 
         public float RayDistance = 1.5f;
+        public float RayRadius = 1f;
 
         private CharacterController _characterController;
         private CharacterInteraction _characterInteraction;
@@ -19,17 +22,22 @@ namespace Assets.Scripts.Character
         private void Update()
         {
             var direction = _characterController.VectorDirection;
-            var hit = Physics2D.Raycast(transform.position, direction, RayDistance);
+
+            var hits = Helpers.OverlapCapsuleAll(transform.position, RayRadius, RayDistance * 2, _characterController.Direction);
+            var transforms = hits
+                .Where(x => x.gameObject != gameObject)
+                .Select(x => x.transform);
+            var hit = transform.GetClosest(transforms);
             SetColliderInteractive(hit);
 
             Debug.DrawRay(transform.position, direction * RayDistance, Color.green);
         }
 
-        private void SetColliderInteractive(RaycastHit2D hit)
+        private void SetColliderInteractive(Component hit)
         {
             Interactive.Abstract.Interactive colliderInteractive = null;
-            if (hit.collider != null)
-                colliderInteractive = hit.collider.GetComponent<Interactive.Abstract.Interactive>();
+            if (hit != null)
+                colliderInteractive = hit.GetComponent<Interactive.Abstract.Interactive>();
 
             if (colliderInteractive == null && _characterInteraction.ColliderInteractive != null)
                 _characterInteraction.ColliderInteractive = null;

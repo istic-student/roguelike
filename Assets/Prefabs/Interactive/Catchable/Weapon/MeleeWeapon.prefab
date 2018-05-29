@@ -102,7 +102,7 @@ MonoBehaviour:
   Type: 3
   DamageAbsorption: 0
   Attack: 20
-  Range: 5
+  Range: 2
   Radius: 1
 --- !u!212 &212724865059876636
 SpriteRenderer:
