@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Interactive.Abstract;
-using Assets.Scripts.Interactive.Catchable;
+using Assets.Scripts.Interactive.Catchable.Abstract;
 using Assets.Scripts.Manager;
 using UnityEngine;
 

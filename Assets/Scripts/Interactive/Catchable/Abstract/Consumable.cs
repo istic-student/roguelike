@@ -1,6 +1,6 @@
-﻿namespace Assets.Scripts.Interactive.Catchable
+﻿namespace Assets.Scripts.Interactive.Catchable.Abstract
 {
-    public class Consumable : Abstract.Catchable
+    public class Consumable : Interactive.Abstract.Catchable
     {
 
         public ConsumableEnum Type;

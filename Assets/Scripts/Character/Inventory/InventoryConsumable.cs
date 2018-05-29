@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Interactive.Abstract;
-using Assets.Scripts.Interactive.Catchable;
-using UnityEngine;
+using Assets.Scripts.Interactive.Catchable.Abstract;
 
 namespace Assets.Scripts.Character.Inventory
 {

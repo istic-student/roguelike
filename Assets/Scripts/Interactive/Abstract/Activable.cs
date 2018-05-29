@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Interactive.Catchable;
+using Assets.Scripts.Interactive.Catchable.Abstract;
 
 namespace Assets.Scripts.Interactive.Abstract
 {
