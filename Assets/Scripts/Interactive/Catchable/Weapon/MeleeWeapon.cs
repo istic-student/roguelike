@@ -3,6 +3,7 @@ using System.Linq;
 using Assets.Scripts.Abstract;
 using Assets.Scripts.Interactive.Catchable.Abstract;
 using Assets.Scripts.Player;
+using Assets.Scripts.Utils;
 using UnityEngine;
 using CharacterController = Assets.Scripts.Character.CharacterController;
 
@@ -28,34 +29,7 @@ namespace Assets.Scripts.Interactive.Catchable.Weapon
         /// <returns>collisions in a capsule</returns>
         private IEnumerable<Collider2D> GetAllCollisions()
         {
-            var point = new Vector2(); // Offset
-            var size = new Vector2(); // Size
-            var direction = CapsuleDirection2D.Vertical;
-            var angle = 0f;
-            switch (GetComponentInParent<CharacterController>().Direction)
-            {
-                case 0:
-                    point = new Vector2(0, Range / 2);
-                    size = new Vector2(Radius, Range);
-                    break;
-                case 1:
-                    point = new Vector2(Range / 2, 0);
-                    size = new Vector2(Range, Radius);
-                    direction = CapsuleDirection2D.Horizontal;
-                    angle = 90f;
-                    break;
-                case 2:
-                    point = new Vector2(0, -(Range / 2));
-                    size = new Vector2(Radius, Range);
-                    break;
-                case 3:
-                    point = new Vector2(-(Range / 2), 0);
-                    size = new Vector2(Range, Radius);
-                    direction = CapsuleDirection2D.Horizontal;
-                    angle = 90f;
-                    break;
-            }
-            return Physics2D.OverlapCapsuleAll((Vector2)transform.position + point, size, direction, angle);
+            return Helpers.OverlapCapsuleAll(transform.position, Radius, Range, GetComponentInParent<CharacterController>().Direction);
         }
 
         /// <summary>

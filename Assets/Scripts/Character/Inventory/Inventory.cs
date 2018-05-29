@@ -38,6 +38,7 @@ namespace Assets.Scripts.Character.Inventory
                 return;
             item.transform.parent = InventoryTransform;
             item.transform.localPosition = new Vector3();
+            item.GetComponent<Collider2D>().enabled = false;
             AddConsumable(item as Consumable);
             AddPassive(item as Passive);
             AddEquipment(item as Equipment);
@@ -52,6 +53,7 @@ namespace Assets.Scripts.Character.Inventory
             if (item == null)
                 return;
             item.transform.parent = GameManager.AssetsManager.InteractiveTransform;
+            item.GetComponent<Collider2D>().enabled = true;
         }
 
         private void OnInventoryChange()
