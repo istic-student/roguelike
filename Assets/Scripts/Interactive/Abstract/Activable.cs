@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Interactive.Catchable;
-using UnityEngine;
 
 namespace Assets.Scripts.Interactive.Abstract
 {
@@ -8,6 +7,7 @@ namespace Assets.Scripts.Interactive.Abstract
     {
 
         public List<Consumable> Unlockers;
+        public bool MustHaveAllUnlockers;
         public bool Actived;
 
         /// <summary>
@@ -28,9 +28,39 @@ namespace Assets.Scripts.Interactive.Abstract
         /// <returns>activation has worked</returns>
         public virtual bool Active(Consumable consumable)
         {
-            if (Actived || !Unlockers.Contains(consumable)) return false;
-            ActiveToUnlock();
+            if (Actived || !Contains(consumable)) return false;
+            if (!MustHaveAllUnlockers)
+                ActiveToUnlock();
+            Unlockers.RemoveAt(GetIndex(consumable));
+            if (MustHaveAllUnlockers && Unlockers.Count <= 0)
+                ActiveToUnlock();
             return true;
+        }
+
+        /// <summary>
+        /// Get index of consumable in unlockers
+        /// </summary>
+        /// <param name="consumable">consumable</param>
+        /// <returns>Index of consumable in unlockers</returns>
+        private int GetIndex(Consumable consumable)
+        {
+            for (var i = 0; i < Unlockers.Count; i++)
+            {
+                var unlocker = Unlockers[i];
+                if (unlocker.TypeAndValueEquals(consumable))
+                    return i;
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// check if unlockers contains consumable
+        /// </summary>
+        /// <param name="consumable">consumable</param>
+        /// <returns>Unlockers contains consumable</returns>
+        private bool Contains(Consumable consumable)
+        {
+            return GetIndex(consumable) >= 0;
         }
 
         /// <summary>

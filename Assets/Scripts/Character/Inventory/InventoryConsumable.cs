@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Interactive.Abstract;
 using Assets.Scripts.Interactive.Catchable;
+using UnityEngine;
 
 namespace Assets.Scripts.Character.Inventory
 {
@@ -77,12 +78,14 @@ namespace Assets.Scripts.Character.Inventory
         /// <param name="objectToActive">object to active</param>
         public void TryToUse(Activable objectToActive)
         {
-            foreach (var consumable in _consumables)
+            for (var i = _consumables.Count - 1; i >= 0; i--)
             {
+                var consumable = _consumables[i];
                 if (!objectToActive.Active(consumable))
                     continue;
                 DestroyConsumable(consumable);
-                return;
+                if (objectToActive.Actived)
+                    return;
             }
         }
 
