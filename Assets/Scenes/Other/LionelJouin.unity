@@ -717,83 +717,46 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 632642636}
     m_Modifications:
-    - target: {fileID: 4885391454507020, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
+    - target: {fileID: 4169932250782986, guid: 9228ba7c6a66aad449250d7b52825534, type: 2}
       propertyPath: m_LocalPosition.x
       value: 8.07
       objectReference: {fileID: 0}
-    - target: {fileID: 4885391454507020, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
+    - target: {fileID: 4169932250782986, guid: 9228ba7c6a66aad449250d7b52825534, type: 2}
       propertyPath: m_LocalPosition.y
       value: -6.67
       objectReference: {fileID: 0}
-    - target: {fileID: 4885391454507020, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
+    - target: {fileID: 4169932250782986, guid: 9228ba7c6a66aad449250d7b52825534, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4885391454507020, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
+    - target: {fileID: 4169932250782986, guid: 9228ba7c6a66aad449250d7b52825534, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4885391454507020, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
+    - target: {fileID: 4169932250782986, guid: 9228ba7c6a66aad449250d7b52825534, type: 2}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4885391454507020, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
+    - target: {fileID: 4169932250782986, guid: 9228ba7c6a66aad449250d7b52825534, type: 2}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4885391454507020, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
+    - target: {fileID: 4169932250782986, guid: 9228ba7c6a66aad449250d7b52825534, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4885391454507020, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
+    - target: {fileID: 4169932250782986, guid: 9228ba7c6a66aad449250d7b52825534, type: 2}
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 1755916550378702, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
-      propertyPath: m_Name
-      value: Healing
-      objectReference: {fileID: 0}
-    - target: {fileID: 212724865059876636, guid: 149c1904639d4b44aaf18ef0b8373708,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212724865059876636, guid: 149c1904639d4b44aaf18ef0b8373708,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0.047468964
-      objectReference: {fileID: 0}
-    - target: {fileID: 212724865059876636, guid: 149c1904639d4b44aaf18ef0b8373708,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114940598173816708, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 149c1904639d4b44aaf18ef0b8373708, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9228ba7c6a66aad449250d7b52825534, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1367527693 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4885391454507020, guid: 149c1904639d4b44aaf18ef0b8373708,
+  m_PrefabParentObject: {fileID: 4169932250782986, guid: 9228ba7c6a66aad449250d7b52825534,
     type: 2}
   m_PrefabInternal: {fileID: 1367527692}
---- !u!1 &1367527694 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1755916550378702, guid: 149c1904639d4b44aaf18ef0b8373708,
-    type: 2}
-  m_PrefabInternal: {fileID: 1367527692}
---- !u!114 &1367527695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1367527694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f80887fde53ceab44ab5038245ce115f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RestoredHealth: 5
 --- !u!1001 &1389176387
 Prefab:
   m_ObjectHideFlags: 0
