@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.Interactive;
-using Assets.Scripts.Interactive.Abstract;
+﻿using Assets.Scripts.Interactive.Abstract;
+using Assets.Scripts.Interactive.Catchable.Abstract;
+using Assets.Scripts.Manager;
 using UnityEngine;
 
 namespace Assets.Scripts.Character.Inventory
@@ -8,68 +8,52 @@ namespace Assets.Scripts.Character.Inventory
     public partial class Inventory : MonoBehaviour
     {
 
-        public List<Consumable> Consumables;
+        public Transform InventoryTransform;
 
         public delegate void InventoryChangeHandler();
         public event InventoryChangeHandler InventoryChange;
 
-        private void Start()
+        public Inventory()
         {
+            InitConsumable();
             InitEquipment();
             InitPassives();
         }
 
+        private void Start()
+        {
+            foreach (var childCatchable in InventoryTransform.GetComponentsInChildren<Catchable>())
+            {
+                Add(childCatchable);
+            }
+        }
+
+        /// <summary>
+        /// Add catchable to the inventory
+        /// </summary>
+        /// <param name="item">catchable to add</param>
         public void Add(Catchable item)
         {
             if (item == null)
                 return;
+            item.transform.parent = InventoryTransform;
+            item.transform.localPosition = new Vector3();
+            item.GetComponent<Collider2D>().enabled = false;
             AddConsumable(item as Consumable);
             AddPassive(item as Passive);
             AddEquipment(item as Equipment);
         }
 
-        public void AddConsumable(Consumable consumable)
+        /// <summary>
+        /// drop catchable
+        /// </summary>
+        /// <param name="item">catchable to drop</param>
+        public void Drop(Catchable item)
         {
-            if (consumable == null)
+            if (item == null)
                 return;
-            Consumables.Add(consumable);
-            OnInventoryChange();
-        }
-
-        public void DropConsumable(Consumable consumable)
-        {
-            if (consumable == null)
-                return;
-            Consumables.Remove(consumable);
-            OnInventoryChange();
-        }
-
-        public void DestroyConsumable(Consumable consumable)
-        {
-            if (consumable == null)
-                return;
-            Consumables.Remove(consumable);
-            Destroy(consumable.gameObject);
-            OnInventoryChange();
-        }
-
-        public void DropAllConsumables()
-        {
-            foreach (var consumable in Consumables)
-            {
-                DropConsumable(consumable);
-            }
-        }
-
-        public void TryToUse(Activable objectToActive)
-        {
-            foreach (var consumable in Consumables)
-            {
-                if (!objectToActive.Active(consumable))
-                    continue;
-                DestroyConsumable(consumable);
-                return;
-            }
+            item.transform.parent = GameManager.AssetsManager.InteractiveTransform;
+            item.GetComponent<Collider2D>().enabled = true;
         }
 
         private void OnInventoryChange()

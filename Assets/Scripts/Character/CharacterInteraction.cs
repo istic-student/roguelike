@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Interactive;
-using Assets.Scripts.Interactive.Abstract;
+﻿using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
 namespace Assets.Scripts.Character
@@ -21,7 +20,7 @@ namespace Assets.Scripts.Character
         {
             var catchable = ColliderInteractive as Catchable;
             if (catchable == null) return;
-            Debug.Log("Action : " + catchable);
+            Debug.Log("Action : " + catchable.name);
             _inventory.Add(catchable);
         }
 
@@ -30,16 +29,18 @@ namespace Assets.Scripts.Character
             var activable = ColliderInteractive as Activable;
             if (activable == null) return;
 
-            Debug.Log("Use : " + activable);
-            if (!activable.Active())
-                _inventory.TryToUse(activable);
+            Debug.Log("Use : " + activable.name);
+            if (activable.Active())
+                return;
+            _inventory.TryToUse(activable);
         }
 
         public void Attack()
         {
-            Debug.Log("Attack");
-            if (_inventory.Weapon != null)
-                _inventory.Weapon.Use();
+            if (_inventory.Weapon == null)
+                return;
+            Debug.Log("Attack with " + _inventory.Weapon.name);
+            _inventory.Weapon.Use();
         }
 
     }

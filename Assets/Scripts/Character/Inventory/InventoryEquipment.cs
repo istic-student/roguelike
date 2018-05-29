@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Interactive;
+using Assets.Scripts.Interactive.Catchable.Abstract;
 
 namespace Assets.Scripts.Character.Inventory
 {
@@ -15,6 +15,9 @@ namespace Assets.Scripts.Character.Inventory
 
         private IDictionary<EquipmentEnum, Equipment> _equipment;
 
+        /// <summary>
+        /// Init equipment (on Start)
+        /// </summary>
         private void InitEquipment()
         {
             _equipment = new Dictionary<EquipmentEnum, Equipment>();
@@ -24,6 +27,10 @@ namespace Assets.Scripts.Character.Inventory
             }
         }
 
+        /// <summary>
+        /// Add a equipment to the inventory
+        /// </summary>
+        /// <param name="equipment">equipment to add</param>
         public void AddEquipment(Equipment equipment)
         {
             if (equipment == null)
@@ -34,19 +41,23 @@ namespace Assets.Scripts.Character.Inventory
             OnInventoryChange();
         }
 
+        /// <summary>
+        /// drop one equipment
+        /// </summary>
+        /// <param name="equipment">equipment to drop</param>
         public void DropEquipment(Equipment equipment)
         {
             if (equipment == null)
                 return;
+            Drop(equipment);
             _equipment[equipment.Type] = null;
             OnInventoryChange();
         }
 
-        public float Attack()
-        {
-            return _equipment.Where(equipment => equipment.Value != null).Sum(equipment => equipment.Value.Attack);
-        }
-
+        /// <summary>
+        /// calculates the sum of the protection of the equipment
+        /// </summary>
+        /// <returns>total of the protection</returns>
         public float Protection()
         {
             return _equipment.Where(equipment => equipment.Value != null).Sum(equipment => equipment.Value.DamageAbsorption);
