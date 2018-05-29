@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Abstract;
+using Assets.Scripts.Interactive.Catchable.Abstract;
 using Assets.Scripts.Player;
 using UnityEngine;
 using CharacterController = Assets.Scripts.Character.CharacterController;

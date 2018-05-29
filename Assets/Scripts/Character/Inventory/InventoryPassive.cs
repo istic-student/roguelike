@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Interactive.Catchable;
+using Assets.Scripts.Interactive.Catchable.Abstract;
 
 namespace Assets.Scripts.Character.Inventory
 {
@@ -25,6 +25,17 @@ namespace Assets.Scripts.Character.Inventory
             if (passive == null)
                 return;
             _passives.Add(passive);
+            passive.PassiveIsFinished += PassiveIsFinished;
+            passive.Active();
+            OnInventoryChange();
+        }
+
+        private void PassiveIsFinished(Passive passive)
+        {
+            if (passive == null)
+                return;
+            _passives.Remove(passive);
+            Destroy(passive.gameObject);
             OnInventoryChange();
         }
 

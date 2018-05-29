@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Interactive.Catchable;
+using Assets.Scripts.Interactive.Catchable.Abstract;
 
 namespace Assets.Scripts.Character.Inventory
 {
@@ -52,15 +52,6 @@ namespace Assets.Scripts.Character.Inventory
             Drop(equipment);
             _equipment[equipment.Type] = null;
             OnInventoryChange();
-        }
-
-        /// <summary>
-        /// calculates the sum of the attack of the equipment
-        /// </summary>
-        /// <returns>total of the attack</returns>
-        public float Attack()
-        {
-            return _equipment.Where(equipment => equipment.Value != null).Sum(equipment => equipment.Value.Attack);
         }
 
         /// <summary>

@@ -23,6 +23,18 @@ namespace Assets.Scripts.Abstract
         /// calculates the actual damage with the protection and reduces CurrentHealth
         /// </summary>
         /// <param name="amount">Amount of damages</param>
+        public void AddHealth(float amount)
+        {
+            CurrentHealth += amount;
+            if (CurrentHealth > StartingHealth)
+                CurrentHealth = StartingHealth;
+            OnHealthChange();
+        }
+
+        /// <summary>
+        /// calculates the actual damage with the protection and reduces CurrentHealth
+        /// </summary>
+        /// <param name="amount">Amount of damages</param>
         public virtual void TakeDamage(float amount)
         {
             if (CurrentHealth <= 0)

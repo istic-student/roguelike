@@ -1,6 +1,6 @@
-﻿namespace Assets.Scripts.Interactive.Catchable
+﻿namespace Assets.Scripts.Interactive.Catchable.Abstract
 {
-    public class Equipment : Abstract.Catchable
+    public class Equipment : Interactive.Abstract.Catchable
     {
 
         public EquipmentEnum Type;
@@ -9,7 +9,6 @@
 
         public virtual void Use()
         {
-
         }
 
     }

@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Interactive.Catchable
+﻿namespace Assets.Scripts.Interactive.Catchable.Abstract
 {
     public enum ConsumableEnum
     {
