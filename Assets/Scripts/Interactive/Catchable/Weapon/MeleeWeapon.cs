@@ -15,6 +15,11 @@ namespace Assets.Scripts.Interactive.Catchable.Weapon
         public float Range;
         public float Radius = 1f;
 
+        public MeleeWeapon()
+        {
+            Type = EquipmentEnum.Weapon;
+        }
+
         public override void Use()
         {
             foreach (var health in GetHealthAround())
