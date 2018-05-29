@@ -14,7 +14,7 @@ namespace Assets.Scripts.Player
         public event PlayerChangeHandler PlayerChange;
         
         private Character.Inventory.Inventory _inventory;
-        private Health _health;
+        private CharacterHealth _characterHealth;
         private CharacterController _characterController;
         private CharacterInteraction _characterInteraction;
 
@@ -24,8 +24,8 @@ namespace Assets.Scripts.Player
             _characterController = GetComponent<CharacterController>();
             _characterInteraction = GetComponent<CharacterInteraction>();
             _inventory = GetComponent<Character.Inventory.Inventory>();
-            _health = GetComponent<Health>();
-            _health.HealthChange += Notify;
+            _characterHealth = GetComponent<CharacterHealth>();
+            _characterHealth.HealthChange += Notify;
             _inventory.InventoryChange += Notify;
         }
 
