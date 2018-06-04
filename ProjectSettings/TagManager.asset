@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 2545320567
+    locked: 0
+  - name: Wall
+    uniqueID: 2980663113
+    locked: 0
+  - name: Animated
+    uniqueID: 1231514791
+    locked: 0
+  - name: Interractive
+    uniqueID: 327530943
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
