@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 3
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -194,3 +194,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &965080046
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4463571778173350, guid: 45f713d91e590e9478f7f056cee3fb71, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.1555399
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463571778173350, guid: 45f713d91e590e9478f7f056cee3fb71, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.2256415
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463571778173350, guid: 45f713d91e590e9478f7f056cee3fb71, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -9.823119
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463571778173350, guid: 45f713d91e590e9478f7f056cee3fb71, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463571778173350, guid: 45f713d91e590e9478f7f056cee3fb71, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463571778173350, guid: 45f713d91e590e9478f7f056cee3fb71, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463571778173350, guid: 45f713d91e590e9478f7f056cee3fb71, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463571778173350, guid: 45f713d91e590e9478f7f056cee3fb71, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 45f713d91e590e9478f7f056cee3fb71, type: 2}
+  m_IsPrefabParent: 0
