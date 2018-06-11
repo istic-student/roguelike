@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using Assets.Scripts.Player;
+using Assets.Scripts.Character;
 using UnityEngine;
 
 namespace Assets.Scripts.Manager
@@ -14,7 +14,6 @@ namespace Assets.Scripts.Manager
         public UIManager UIManager;
 
         [Header("Game")]
-
         private float _time;
 
         void Awake()
@@ -43,7 +42,7 @@ namespace Assets.Scripts.Manager
             yield return new WaitForSeconds(1);
             foreach (var player in AssetsManager.Players)
             {
-                var h = player.GetComponent<Health>();
+                var h = player.GetComponent<CharacterHealth>();
                 if (h != null)
                     h.TakeDamage(10);
             }
