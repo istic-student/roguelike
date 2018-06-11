@@ -11,5 +11,8 @@ namespace Assets.Scripts.Manager
         public PlayerController[] Players;
         public PlayerUI PlayerUIPrefab;
 
+        [Header("Interactive")]
+        public Transform InteractiveTransform;
+
     }
 }

@@ -1,7 +1,8 @@
-﻿using Assets.Scripts.Player;
-using Assets.Scripts.Player.Inventory;
+﻿using Assets.Scripts.Character;
+using Assets.Scripts.Player;
 using UnityEngine;
 using UnityEngine.UI;
+using Inventory = Assets.Scripts.Character.Inventory.Inventory;
 
 namespace Assets.Scripts.UI
 {
@@ -14,7 +15,7 @@ namespace Assets.Scripts.UI
 
         public void SetData(PlayerController playerController)
         {
-            SetHealth(playerController.GetComponent<Health>());
+            SetHealth(playerController.GetComponent<CharacterHealth>());
             SetInventory(playerController.GetComponent<Inventory>());
         }
 
@@ -23,11 +24,11 @@ namespace Assets.Scripts.UI
             Icon.sprite = image;
         }
 
-        private void SetHealth(Health health)
+        private void SetHealth(CharacterHealth characterHealth)
         {
-            if (health == null)
+            if (characterHealth == null)
                 return;
-            Health.text = health.CurrentHealth + " / " + health.StartingHealth;
+            Health.text = characterHealth.CurrentHealth + " / " + characterHealth.StartingHealth;
         }
 
         private void SetInventory(Inventory inventory)
