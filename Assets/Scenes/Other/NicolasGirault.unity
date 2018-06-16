@@ -341,6 +341,17 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 212798765718054088, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 68d171c0e90edf0479af9492b16bee37,
+        type: 3}
+    - target: {fileID: 95862975555260930, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 69b38f69b53983b41833576f54850f8e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c286c6d7b51251449b7537405041610, type: 2}
   m_IsPrefabParent: 0
@@ -541,6 +552,17 @@ Prefab:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 95862975555260930, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d730b666ae476114987f534652c2f080, type: 2}
+    - target: {fileID: 212798765718054088, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a865f60609efdc49ada5db8cdee634b,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c286c6d7b51251449b7537405041610, type: 2}
   m_IsPrefabParent: 0
@@ -856,6 +878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fffe62e3d10bde4aa4c16602f3ef3e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColliderInteractive: {fileID: 0}
+  _enemyDetectionRange: 10
+  _enemyAttackRange: 3
 --- !u!61 &1469375952
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -873,7 +898,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.23, y: 1.6}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1.25, y: 1.62}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -913,7 +938,7 @@ Animator:
   m_GameObject: {fileID: 1469375944}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b23b787f23324994e880181cb44ac8a1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 69b38f69b53983b41833576f54850f8e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -958,7 +983,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fc2acdae91ac4f24992226a814c2c6d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68d171c0e90edf0479af9492b16bee37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1026,6 +1051,17 @@ Prefab:
       propertyPath: m_Name
       value: Player (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 212798765718054088, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0c8898502d4e5584bb3e8f388a1d23b7,
+        type: 3}
+    - target: {fileID: 95862975555260930, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 90098e40036992544abec4bc6e4c7360, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c286c6d7b51251449b7537405041610, type: 2}
   m_IsPrefabParent: 0
