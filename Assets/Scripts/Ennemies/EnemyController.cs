@@ -14,15 +14,16 @@ namespace Assets.Scripts.Player
         //public int EnnemyNumber;
 
         [HideInInspector]
-        public Interactive.Abstract.Interactive ColliderInteractive;
+        public Interactive.Abstract.Fightable ColliderInteractive;
 
         public delegate void EnnemyChangeHandler(EnemyController ennemyController);
         public event EnnemyChangeHandler EnnemyChange;
 
         private Character.Inventory.Inventory _inventory;
         private CharacterHealth _characterHealth;
-        private int _enemyDetectionRange;
-        private int _enemyAttackRange;
+        public int _enemyDetectionRange;
+        public int _enemyAttackRange;
+        public float _enemySpeed;
         private float _playerDistance;
         private int _playerToChase;
         private CharacterController _characterController;
@@ -30,6 +31,9 @@ namespace Assets.Scripts.Player
 
         private Transform target;
         private bool trackEnnemy;
+
+        private int waitFrameToWalk;
+        private float randomX, randomY;
 
         // Use this for initialization
         void Start()
@@ -44,7 +48,11 @@ namespace Assets.Scripts.Player
             _playerDistance = 150;
             _playerToChase = 0;
             _enemyDetectionRange = 10;
-            _enemyAttackRange = 3;
+            _enemyAttackRange = 2;
+            _enemySpeed = 2.5f;
+            _characterController.Speed = _enemySpeed;
+            waitFrameToWalk = 0;
+            randomX = 0; randomY = 0;
         }
 
         // Update is called once per frame
@@ -69,9 +77,17 @@ namespace Assets.Scripts.Player
             if (trackEnnemy) //si le joueur a été détecté on recupère sa position pour le suivre
             {
                 target = playersPositions[_playerToChase].transform;
-                this.moveTorwardPlayer();
-                if (Vector2.Distance(target.position, this.transform.position) < _enemyAttackRange)
-                    hitPlayer();
+                if (Vector2.Distance(target.position, this.transform.position) > _enemyAttackRange)
+                {
+                    this.moveTorwardPlayer();
+                }
+          
+                if (Vector2.Distance(target.position, this.transform.position) <= _enemyAttackRange)
+                {
+                    print("the player is at hitting range !");
+                    
+                    //hitPlayer();
+                }
             } else
             {
                 this.moveRandomly();
@@ -89,13 +105,27 @@ namespace Assets.Scripts.Player
 
         public void moveRandomly()
         {
-            //plus tard a scripter des pattern de deplacement pou chaque type d'ennemie
-            _characterController.Move(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            if (waitFrameToWalk == 0)
+            {
+                randomX = Random.Range(-1f, 1f);
+                randomY = Random.Range(-1f, 1f);
+                waitFrameToWalk++;
+            }
+
+            if (waitFrameToWalk < 5)
+            {
+                _characterController.Move(randomX, randomY);
+                waitFrameToWalk++;
+            } else
+            {
+                waitFrameToWalk = 0;
+            }
+            
         }
 
         public void hitPlayer()
         {
-            var playerToHit = ColliderInteractive as Interactive;
+            var playerToHit = ColliderInteractive as Activable;
             if (playerToHit == null)
                 return;
             Debug.Log("Attack " + playerToHit.tag + " with " + _inventory.Weapon.name);
