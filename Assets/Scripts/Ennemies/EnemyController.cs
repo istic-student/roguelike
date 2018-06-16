@@ -28,6 +28,7 @@ namespace Assets.Scripts.Player
         private int _playerToChase;
         private CharacterController _characterController;
         private CharacterInteraction _characterInteraction;
+        private BossNecromancer _bossNecromancer;
 
         private Transform target;
         private bool trackEnnemy;
@@ -53,6 +54,9 @@ namespace Assets.Scripts.Player
             _characterController.Speed = _enemySpeed;
             waitFrameToWalk = 0;
             randomX = 0; randomY = 0;
+
+            //to generalize (detect if normal mob or boss)
+            _bossNecromancer = GetComponent<BossNecromancer>();
         }
 
         // Update is called once per frame
@@ -86,7 +90,7 @@ namespace Assets.Scripts.Player
                 {
                     print("the player is at hitting range !");
                     
-                    //hitPlayer();
+                    hitPlayer();
                 }
             } else
             {
@@ -125,11 +129,12 @@ namespace Assets.Scripts.Player
 
         public void hitPlayer()
         {
-            var playerToHit = ColliderInteractive as Activable;
+            var playerToHit = ColliderInteractive as Fightable;
             if (playerToHit == null)
+                print("null");
                 return;
-            Debug.Log("Attack " + playerToHit.tag + " with " + _inventory.Weapon.name);
-            _inventory.Weapon.Use();
+            print("enemy is atacking");
+            _bossNecromancer.Attack();
         }
 
         public void Notify()

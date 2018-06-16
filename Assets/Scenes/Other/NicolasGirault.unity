@@ -352,6 +352,36 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 69b38f69b53983b41833576f54850f8e, type: 2}
+    - target: {fileID: 61405113804266494, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 61405113804266494, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 61405113804266494, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.64002275
+      objectReference: {fileID: 0}
+    - target: {fileID: 61405113804266494, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.640896
+      objectReference: {fileID: 0}
+    - target: {fileID: 61405113804266494, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.0019777715
+      objectReference: {fileID: 0}
+    - target: {fileID: 61405113804266494, guid: 7c286c6d7b51251449b7537405041610,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0.0022752285
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c286c6d7b51251449b7537405041610, type: 2}
   m_IsPrefabParent: 0
@@ -566,6 +596,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c286c6d7b51251449b7537405041610, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1208537083 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1110994882964034, guid: 7c286c6d7b51251449b7537405041610,
+    type: 2}
+  m_PrefabInternal: {fileID: 1208537082}
+--- !u!114 &1208537084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208537083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5312692c7c2727a429331f7d630c3897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!213 &1381266073
 Sprite:
   m_ObjectHideFlags: 0
@@ -779,6 +825,8 @@ GameObject:
   - component: {fileID: 1469375947}
   - component: {fileID: 1469375946}
   - component: {fileID: 1469375945}
+  - component: {fileID: 1469375958}
+  - component: {fileID: 1469375957}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -881,6 +929,7 @@ MonoBehaviour:
   ColliderInteractive: {fileID: 0}
   _enemyDetectionRange: 10
   _enemyAttackRange: 3
+  _enemySpeed: 0
 --- !u!61 &1469375952
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -938,7 +987,7 @@ Animator:
   m_GameObject: {fileID: 1469375944}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69b38f69b53983b41833576f54850f8e, type: 2}
+  m_Controller: {fileID: 9100000, guid: d730b666ae476114987f534652c2f080, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -983,7 +1032,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 68d171c0e90edf0479af9492b16bee37, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a865f60609efdc49ada5db8cdee634b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1008,6 +1057,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1469375957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1469375944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5312692c7c2727a429331f7d630c3897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1469375958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1469375944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc7c9f2ade4282429c353768a65b00e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColliderInteractive: {fileID: 0}
 --- !u!1001 &1723724805
 Prefab:
   m_ObjectHideFlags: 0
@@ -1065,3 +1137,19 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c286c6d7b51251449b7537405041610, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1723724806 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1110994882964034, guid: 7c286c6d7b51251449b7537405041610,
+    type: 2}
+  m_PrefabInternal: {fileID: 1723724805}
+--- !u!114 &1723724807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723724806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5312692c7c2727a429331f7d630c3897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
