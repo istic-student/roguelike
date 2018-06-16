@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Character;
+using Assets.Scripts.Interactive.Abstract;
 
 public class BossNecromancer : MonoBehaviour {
 
     private CharacterHealth _characterHealth;
     private bool phaseThreeStarted, firstSummon, secondSummon;
+
+    [HideInInspector]
+    public Fightable ColliderInteractive;
 
     // Use this for initialization
     void Start () {
@@ -50,7 +54,11 @@ public class BossNecromancer : MonoBehaviour {
         } else
         {
             rollDice = Random.Range(4, 8);
-            //inflictDamage(rollDice);
+            var playerToHit = ColliderInteractive as Fightable;
+            if (playerToHit == null)
+                return;
+            print("infliging " + rollDice + " damage");
+            //playerToHit.TakeDamage(rollDice);
         }
 
     }
