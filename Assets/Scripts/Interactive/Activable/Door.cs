@@ -1,60 +1,28 @@
-﻿using Assets.Scripts.Envrionement;
+﻿using UnityEngine;
 using Assets.Scripts.Utils;
-using UnityEngine;
+using Assets.Scripts.Player;
 
 namespace Assets.Scripts.Interactive.Activable
 {
-    public class Door
+    public class Door : Abstract.Activable
     {
+        private Camera _mainCamera;
 
-        // General informations
-
-        public Room ownerRoom;
-        public Room connectingRoom;
-
-        public DoorType doorType;
-
-        // ---
-
-        public bool isOpen = false;
-               
-        public BoxCollider2D Wall { get; set; }
-
-        private Animator _animator;
-
-        
-        public void OnTriggerEnter2D(Collider2D other)
+        private Orientation _Orientation;
+        public void Start()
         {
-            if (other.CompareTag("Player") && isOpen)
-            {
-                // Change player room
-                connectingRoom.PlayerIsInRoom = true;
-                ownerRoom.PlayerIsInRoom = false;
-            }
-        }
-
-        public void Unlock()
+            _Orientation = Orientation.North;
+            _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        }    
+        protected override void Unlock()
         {
             Debug.Log("Open door");
-            isOpen = true;
+
+            var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            player.transform.Translate(34, 0, 0);
+            _mainCamera.transform.Translate(34, 0, 0);
             // todo : remove collision and play animation
         }
 
-        public void Lock()
-        {
-            Debug.Log("close door");
-            isOpen = false;
-            // todo : remove collision and play animation
-        }
-
-    }
-
-    
-
-    public enum DoorType
-    {
-        normalDoor,
-        bossDoor,
-        secretDoor,
     }
 }
