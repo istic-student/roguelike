@@ -58,6 +58,15 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 ## Screenshot
 
+![Map generation](https://i.imgur.com/N7jzmkU.png")
+![Map generation](https://i.imgur.com/azAYkcp.png")
+![Map generation](https://i.imgur.com/rYynkUV.png")  
+Legend:
+- Blue: spawn
+- Yellow : treasure room
+- Pink: secret room
+- Red: boss room
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
