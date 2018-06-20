@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Character;
-using Assets.Scripts.Interactive.Abstract;
+using Assets.Scripts.Player;
 using CharacterController = Assets.Scripts.Character.CharacterController;
 
-namespace Assets.Scripts.Player
+namespace Assets.Scripts.Ennemies
 {
 
     public class EnemyController : MonoBehaviour
     {
-
-        //public int EnnemyNumber;
-
-        [HideInInspector]
-        public Interactive.Abstract.Fightable ColliderInteractive;
 
         public delegate void EnnemyChangeHandler(EnemyController ennemyController);
         public event EnnemyChangeHandler EnnemyChange;
@@ -27,11 +22,11 @@ namespace Assets.Scripts.Player
         private float _playerDistance;
         private int _playerToChase;
         private CharacterController _characterController;
-        private CharacterInteraction _characterInteraction;
         private BossNecromancer _bossNecromancer;
 
         private Transform target;
         private bool trackEnnemy;
+        public bool enemyIsBoss;
 
         private int waitFrameToWalk;
         private float randomX, randomY;
@@ -40,7 +35,6 @@ namespace Assets.Scripts.Player
         void Start()
         {
             _characterController = GetComponent<CharacterController>();
-            _characterInteraction = GetComponent<CharacterInteraction>();
             _inventory = GetComponent<Character.Inventory.Inventory>();
             _characterHealth = GetComponent<CharacterHealth>();
             _characterHealth.HealthChange += Notify;
@@ -56,7 +50,14 @@ namespace Assets.Scripts.Player
             randomX = 0; randomY = 0;
 
             //to generalize (detect if normal mob or boss)
-            _bossNecromancer = GetComponent<BossNecromancer>();
+            if (GetComponent<BossNecromancer>() != null) {
+                enemyIsBoss = true;
+                _bossNecromancer = GetComponent<BossNecromancer>();
+            } else
+            {
+                enemyIsBoss = false;
+            }
+            
         }
 
         // Update is called once per frame
@@ -129,12 +130,22 @@ namespace Assets.Scripts.Player
 
         public void hitPlayer()
         {
-            var playerToHit = ColliderInteractive as Fightable;
-            if (playerToHit == null)
-                print("null");
-                return;
-            print("enemy is atacking");
-            _bossNecromancer.Attack();
+            if (enemyIsBoss)
+            {
+                print("Started attacking");
+                if (_inventory.Weapon == null)
+                {
+                    print("no weapon enemy controller");
+                }
+                _bossNecromancer.Attack();
+            } else
+            {
+                if (_inventory.Weapon == null)
+                    return;
+                Debug.Log("Attack with " + _inventory.Weapon.name);
+                _inventory.Weapon.Use();
+            }
+            
         }
 
         public void Notify()

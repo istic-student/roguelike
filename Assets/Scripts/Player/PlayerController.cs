@@ -37,7 +37,7 @@ namespace Assets.Scripts.Player
         }
 
         private void Update()
-        {
+        {          
             if (Input.GetButtonDown(Joystick.Action))
                 _characterInteraction.Action();
 
