@@ -10,7 +10,7 @@ namespace Assets.Scripts.Environnement
 		List<Vector2> takenPositions = new List<Vector2>();
 
 		List<Room> roomList = new List<Room>();
-		int gridSizeX, gridSizeY, numberOfRooms = 15;
+		int gridSizeX, gridSizeY, numberOfRooms = 20;
 		public GameObject roomWhiteObj;
 
 		// specials rooms
@@ -26,8 +26,8 @@ namespace Assets.Scripts.Environnement
 			gridSizeX = Mathf.RoundToInt(worldSize.x);
 			gridSizeY = Mathf.RoundToInt(worldSize.y);
 
-			_NumberOfSecretRooms = Random.Range(0,100) < 5 ? 1 : 0;
-			_NumberOfTreasuresRooms = Random.Range(1,2);
+			_NumberOfSecretRooms = Mathf.RoundToInt(numberOfRooms * 0.05f);
+			_NumberOfTreasuresRooms = Mathf.RoundToInt(numberOfRooms * 0.10f);
 
 			CreateRooms(); //lays out the actual map			
 			SetRoomDoors(); //assigns the doors where rooms would connect
@@ -94,6 +94,11 @@ namespace Assets.Scripts.Environnement
 					|| (!roomList[i].doorBot && roomList[i].doorLeft && !roomList[i].doorRight && !roomList[i].doorTop)
 					|| (!roomList[i].doorBot && !roomList[i].doorLeft && roomList[i].doorRight && !roomList[i].doorTop)
 					|| (!roomList[i].doorBot && !roomList[i].doorLeft && !roomList[i].doorRight && roomList[i].doorTop))) {
+						if(_NumberOfSecretRooms == 1) {
+							_NumberOfSecretRooms = 0;
+							break;
+						}
+						_NumberOfSecretRooms--;
 						roomList[i].RoomType = RoomType.SecretRoom;
 						break;
 					}
