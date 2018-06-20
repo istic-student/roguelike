@@ -2,107 +2,122 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Character;
-using Assets.Scripts.Interactive.Abstract;
 
-public class BossNecromancer : MonoBehaviour {
-
-    private CharacterHealth _characterHealth;
-    private bool phaseThreeStarted, firstSummon, secondSummon;
-
-    [HideInInspector]
-    public Fightable ColliderInteractive;
-
-    // Use this for initialization
-    void Start () {
-        _characterHealth = GetComponent<CharacterHealth>();
-        phaseThreeStarted = false;
-        firstSummon = false;
-        secondSummon = false;
-    }
-
-    public void Attack()
+namespace Assets.Scripts.Ennemies
+{
+    public class BossNecromancer : MonoBehaviour
     {
-        if ( _characterHealth.CurrentHealth < 30 && phaseThreeStarted == false)
+
+        private CharacterHealth _characterHealth;
+        private Character.Inventory.Inventory _inventory;
+        private bool phaseThreeStarted, firstSummon, secondSummon;
+
+        // Use this for initialization
+        void Start()
         {
-            phaseThree();
-            phaseThreeStarted = true;
-        }
-        if ( _characterHealth.CurrentHealth < 60)
-        {
-            phaseTwo();
+            _characterHealth = GetComponent<CharacterHealth>();
+            _inventory = GetComponent<Character.Inventory.Inventory>();
+            phaseThreeStarted = false;
+            firstSummon = false;
+            secondSummon = false;
         }
 
-        phaseOne();
-    }
-
-    public void phaseOne()
-    {
-        //the default pattern of the necromancer used in this fight
-
-        //staf attack with a chance to inflict poison damage
-
-        //small chance to summon one skeleton
-
-        int rollDice;
-
-        rollDice = Random.Range(0, 5);
-
-        if (rollDice == 5 && firstSummon == false)
+        public void Attack()
         {
-            //summonSkeleton(1);
-            firstSummon = true;
-        } else
-        {
-            rollDice = Random.Range(4, 8);
-            var playerToHit = ColliderInteractive as Fightable;
-            if (playerToHit == null)
-                return;
-            print("infliging " + rollDice + " damage");
-            //playerToHit.TakeDamage(rollDice);
+            if (_characterHealth.CurrentHealth < 30 && phaseThreeStarted == false)
+            {
+                print("phase two started");
+                phaseThree();
+                phaseThreeStarted = true;
+            }
+            if (_characterHealth.CurrentHealth < 60)
+            {
+                print("phase two");
+                phaseTwo();
+            }
+            print("phase one");
+            phaseOne();
         }
 
-    }
-
-    public void phaseTwo()
-    {
-        //at 66% hp the necromancer start to use this pattern with the first one
-
-        //medium chance to summon one skeleton
-
-        //medium chance to heal (small) skeleton if one is present
-
-        int rollDice;
-
-        rollDice = Random.Range(0, 5);
-
-        if (rollDice > 3 && secondSummon == false)
+        public void phaseOne()
         {
-            //summonSkeleton(2);
-            secondSummon = true;
+            //the default pattern of the necromancer used in this fight
+
+            //staf attack with a chance to inflict poison damage
+
+            //small chance to summon one skeleton
+
+            int rollDice;
+            rollDice = Random.Range(0, 10);
+            print("roll dice for " + rollDice);
+
+            if (rollDice == 9 && firstSummon == false)
+            {
+                //summonSkeleton(1);
+                firstSummon = true;
+            }
+            else
+            {
+                if (_inventory.Weapon == null)
+                {
+                    print("no weapon detected");
+                    return;
+                }
+                else
+                {
+                    Debug.Log("Attack with " + _inventory.Weapon.name);
+                    _inventory.Weapon.Use();
+                }
+
+            }
+
         }
-        else
+
+        public void phaseTwo()
         {
-            rollDice = Random.Range(4, 8);
-            //inflictDamage(rollDice);
+            //at 66% hp the necromancer start to use this pattern with the first one
+
+            //medium chance to summon one skeleton
+
+            //medium chance to heal (small) skeleton if one is present
+
+            int rollDice;
+
+            rollDice = Random.Range(0, 10);
+            print("roll dice for " + rollDice);
+
+            if (rollDice > 7 && secondSummon == false)
+            {
+                //summonSkeleton(2);
+                secondSummon = true;
+            }
+            else
+            {
+                if (_inventory.Weapon == null)
+                {
+                    print("no weapon detected");
+                    return;
+                }
+                else
+                {
+                    Debug.Log("Attack with " + _inventory.Weapon.name);
+                    _inventory.Weapon.Use();
+                }
+            }
+        }
+
+        public void phaseThree()
+        {
+            //at 33% hp he use also this pattern once to summon 3 weak skeletton to help him
+
+            //summonSkeleton(3,4,5);
+        }
+
+        public void summonSkeleton()
+        {
+            // smt like getComponent(skeleton).enabled();
+            // le skeletton en disabled aurait alors un script qui le fait suivre seulement le necromancien tant qu'il n'apparait pas 
+            // ou vu que c'est une salle de boss une range tres grande qui le fais detecter automatique le player pour l'attaquer
         }
     }
-
-    public void phaseThree()
-    {
-        //at 33% hp he use also this pattern once to summon 3 weak skeletton to help him
-
-        //summonSkeleton(3,4,5);
-    }
-
-    public void summonSkeleton()
-    {
-        // smt like getComponent(skeleton).enabled();
-        // le skeletton en disabled aurait alors un script qui le fait suivre seulement le necromancien tant qu'il n'apparait pas 
-        // ou vu que c'est une salle de boss une range tres grande qui le fais detecter automatique le player pour l'attaquer
-    }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }
