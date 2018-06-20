@@ -244,6 +244,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 904152955}
+  - component: {fileID: 904152956}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -265,6 +266,24 @@ Transform:
   m_Father: {fileID: 1469375956}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &904152956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 904152954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0d7c9c6fe9ae24aa344d934ed974bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  DamageAbsorption: 0
+  Attack: 0
+  minDamage: 4
+  maxDamage: 7
+  Range: 0
+  Radius: 1
 --- !u!114 &1069796023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +423,7 @@ MonoBehaviour:
   Type: 3
   DamageAbsorption: 0
   Attack: 5
-  Range: 3
+  Range: 4
   Radius: 1
 --- !u!1 &1196901233
 GameObject:
@@ -832,7 +851,6 @@ GameObject:
   - component: {fileID: 1469375945}
   - component: {fileID: 1469375958}
   - component: {fileID: 1469375957}
-  - component: {fileID: 1469375959}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1092,22 +1110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc7c9f2ade4282429c353768a65b00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1469375959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1469375944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b185bdf64a226a4f911c3b3070baa70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 3
-  DamageAbsorption: 0
-  Attack: 7
-  Range: 3
-  Radius: 1
 --- !u!1001 &1723724805
 Prefab:
   m_ObjectHideFlags: 0
