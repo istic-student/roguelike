@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Abstract;
+using Assets.Scripts.Interactive.Catchable.Abstract;
 using Assets.Scripts.Player;
 using Assets.Scripts.Utils;
 using UnityEngine;
@@ -40,9 +41,9 @@ namespace Assets.Scripts.Interactive.Catchable.Weapon
         /// Get all healths arround the weapon with a range
         /// </summary>
         /// <returns>List of healths (players aren't included)</returns>
-        public IEnumerable<Scripts.Abstract.Health> GetHealthAround()
+        public IEnumerable<Health> GetHealthAround()
         {
-            return GetAllCollisions().Select(hit => hit.GetComponent<Scripts.Abstract.Health>()).Where(health => health != null && health.GetComponent<PlayerController>() == null);
+            return GetAllCollisions().Select(hit => hit.GetComponent<Health>()).Where(health => health != null && health.GetComponent<PlayerController>() == null);
         }
 
     }
