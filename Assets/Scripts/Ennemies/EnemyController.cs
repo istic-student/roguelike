@@ -135,9 +135,12 @@ namespace Assets.Scripts.Ennemies
                 print("Started attacking");
                 if (_inventory.Weapon == null)
                 {
-                    print("no weapon enemy controller");
+                    print("enemy ain't got no weapon");
+                    return;             
+
+                } else {
+                    _bossNecromancer.Attack();
                 }
-                _bossNecromancer.Attack();
             } else
             {
                 if (_inventory.Weapon == null)
