@@ -18,7 +18,6 @@ namespace Assets.Scripts.Ennemies
         private CharacterHealth _characterHealth;
         public int _enemyDetectionRange;
         public int _enemyAttackRange;
-        public float _enemySpeed;
         private float _playerDistance;
         private int _playerToChase;
         private CharacterController _characterController;
@@ -27,8 +26,10 @@ namespace Assets.Scripts.Ennemies
         private Transform target;
         private bool trackEnnemy;
         public bool enemyIsBoss;
+        public bool enemyIsMinion;
 
         private int waitFrameToWalk;
+        private int waitFrameToAttack;
         private float randomX, randomY;
 
         // Use this for initialization
@@ -44,8 +45,7 @@ namespace Assets.Scripts.Ennemies
             _playerToChase = 0;
             _enemyDetectionRange = 10;
             _enemyAttackRange = 2;
-            _enemySpeed = 2.5f;
-            _characterController.Speed = _enemySpeed;
+            waitFrameToAttack = 0;
             waitFrameToWalk = 0;
             randomX = 0; randomY = 0;
 
@@ -57,7 +57,12 @@ namespace Assets.Scripts.Ennemies
             {
                 enemyIsBoss = false;
             }
-            
+        
+            if (enemyIsMinion)
+            {
+                gameObject.SetActive(false);
+            }
+
         }
 
         // Update is called once per frame
@@ -90,12 +95,30 @@ namespace Assets.Scripts.Ennemies
                 if (Vector2.Distance(target.position, this.transform.position) <= _enemyAttackRange)
                 {
                     print("the player is at hitting range !");
+                    if (waitFrameToAttack == 0)
+                    {
+                        hitPlayer();
+                        waitFrameToAttack++;
+                    }
+
+                    if (waitFrameToAttack < 20)
+                    {
+                        waitFrameToAttack++;
+                    } else
+                    {
+                        waitFrameToAttack = 0;
+                    }
                     
-                    hitPlayer();
                 }
             } else
             {
                 this.moveRandomly();
+            }
+
+            if (_characterHealth.CurrentHealth <= 0)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                //gameObject.SetActive(false);
             }
         }
 
@@ -145,7 +168,6 @@ namespace Assets.Scripts.Ennemies
             {
                 if (_inventory.Weapon == null)
                     return;
-                Debug.Log("Attack with " + _inventory.Weapon.name);
                 _inventory.Weapon.Use();
             }
             

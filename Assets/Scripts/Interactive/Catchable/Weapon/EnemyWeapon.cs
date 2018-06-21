@@ -32,8 +32,8 @@ namespace Assets.Scripts.Interactive.Catchable.Weapon
             {
                 float attackDamage;
                 attackDamage = Random.Range(minDamage, maxDamage + 1);
-                print("the enemy inflicted " + attackDamage + " damage");
-                health.TakeDamage(Attack);
+                print(_enemyController.name + " inflicted " + attackDamage + " damage");
+                health.TakeDamage(attackDamage);
             }
         }
 
