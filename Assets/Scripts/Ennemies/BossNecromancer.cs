@@ -49,11 +49,10 @@ namespace Assets.Scripts.Ennemies
 
             int rollDice;
             rollDice = Random.Range(0, 10);
-            print("roll dice for " + rollDice);
 
             if (rollDice == 9 && firstSummon == false)
             {
-                //summonSkeleton(1);
+                transform.GetChild(1).gameObject.SetActive(true);
                 firstSummon = true;
             }
             else
@@ -65,7 +64,6 @@ namespace Assets.Scripts.Ennemies
                 }
                 else
                 {
-                    Debug.Log("Attack with " + _inventory.Weapon.name);
                     _inventory.Weapon.Use();
                 }
 
@@ -88,7 +86,7 @@ namespace Assets.Scripts.Ennemies
 
             if (rollDice > 7 && secondSummon == false)
             {
-                //summonSkeleton(2);
+                transform.GetChild(2).gameObject.SetActive(true);
                 secondSummon = true;
             }
             else
@@ -100,7 +98,6 @@ namespace Assets.Scripts.Ennemies
                 }
                 else
                 {
-                    Debug.Log("Attack with " + _inventory.Weapon.name);
                     _inventory.Weapon.Use();
                 }
             }
@@ -110,14 +107,9 @@ namespace Assets.Scripts.Ennemies
         {
             //at 33% hp he use also this pattern once to summon 3 weak skeletton to help him
 
-            //summonSkeleton(3,4,5);
-        }
-
-        public void summonSkeleton()
-        {
-            // smt like getComponent(skeleton).enabled();
-            // le skeletton en disabled aurait alors un script qui le fait suivre seulement le necromancien tant qu'il n'apparait pas 
-            // ou vu que c'est une salle de boss une range tres grande qui le fais detecter automatique le player pour l'attaquer
+            transform.GetChild(3).gameObject.SetActive(true);
+            transform.GetChild(4).gameObject.SetActive(true);
+            transform.GetChild(5).gameObject.SetActive(true);
         }
     }
 }

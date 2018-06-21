@@ -23,6 +23,7 @@ namespace Assets.Scripts.Character
         protected override void Die()
         {
             Debug.Log("Die " + gameObject);
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
             if (_inventory != null)
                 _inventory.DropAllConsumables();
             OnHealthChange();

@@ -43,8 +43,10 @@ namespace Assets.Scripts.Abstract
             if (amount < 0) amount = 0;
             CurrentHealth -= amount;
             if (CurrentHealth <= 0)
+            {
                 Debug.Log(gameObject.name + " has died");
                 Die();
+            }                
             OnHealthChange();
         }
 
