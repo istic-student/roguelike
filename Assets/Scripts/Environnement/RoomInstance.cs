@@ -11,7 +11,7 @@ namespace Assets.Scripts.Environnement
 		public RoomType RoomType;
 		public bool doorTop, doorBot, doorLeft, doorRight;
 
-        public Tile wallTile, floorTile;
+        public Tile WallTile, FloorTile;
 
         Door doorU, doorD, doorL, dooR;
 
@@ -21,9 +21,11 @@ namespace Assets.Scripts.Environnement
 
         Tilemap Floor, Wall, Animated, Interactive;
 
-		public RoomInstance(Vector2 _gridPos, RoomType _RoomType){
+		public RoomInstance(Vector2 _gridPos, RoomType _RoomType,  Tile _WallTile,  Tile _FloorTile){
 			gridPos = _gridPos;
 			RoomType = _RoomType;
+            WallTile = _WallTile;
+            FloorTile = _FloorTile;
 		}
 
         void start() {
@@ -53,13 +55,28 @@ namespace Assets.Scripts.Environnement
         }
 
         void GenerateRoomTiles() {
+            GenerateFloorTiles();
+            GenerateWallTiles();
+        }
+
+        void GenerateFloorTiles() {
             Vector3Int currentCell = Floor.WorldToCell(gridPos);
             for (int x = 0; x < roomSizeX; x++)           
             {                
                 for (int y = 0; y < roomSizeY; y++)
                 {
-                    GenerateRoomTiles(new Vector3Int(currentCell.x, currentCell.y, currentCell.z), floorTile, Floor);
+                    GenerateRoomTiles(new Vector3Int(currentCell.x + x, currentCell.y + y, currentCell.z), FloorTile, Floor);
                 }   
+            }
+        }
+
+        void GenerateWallTiles() {
+            Vector3Int currentCell = Floor.WorldToCell(gridPos);
+            //Nort wall
+            for (int x = 0; x < roomSizeX; x++)           
+            {               
+                GenerateRoomTiles(new Vector3Int(currentCell.x + x, currentCell.y, currentCell.z), WallTile, Wall);
+        
             }
         }
         
