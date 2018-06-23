@@ -15,8 +15,8 @@ namespace Assets.Scripts.Environnement
 
         Door doorU, doorD, doorL, dooR;
 
-        float tilesSize = 32;
-        int roomSizeX = 9, roomSizeY = 17;
+        float tilesSize;
+
         Vector2 roomSizeInTiles = new Vector2(9,17);
 
         Tilemap Floor, Wall, Animated, Interactive;
@@ -28,13 +28,14 @@ namespace Assets.Scripts.Environnement
             FloorTile = _FloorTile;
 		}
 
-        void start() {
+        void Start() {
             Floor = GameObject.FindGameObjectWithTag("Floor").GetComponent<Tilemap>();
             Wall = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
             Animated = GameObject.FindGameObjectWithTag("Animated").GetComponent<Tilemap>();
             Interactive = GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>();
-            CreateDoors();
+            
             GenerateRoomTiles();
+            CreateDoors();
         }
         
         void CreateDoors() {
@@ -61,9 +62,9 @@ namespace Assets.Scripts.Environnement
 
         void GenerateFloorTiles() {
             Vector3Int currentCell = Floor.WorldToCell(gridPos);
-            for (int x = 0; x < roomSizeX; x++)           
+            for (int x = 0; x < roomSizeInTiles.x; x++)           
             {                
-                for (int y = 0; y < roomSizeY; y++)
+                for (int y = 0; y < roomSizeInTiles.y; y++)
                 {
                     GenerateRoomTiles(new Vector3Int(currentCell.x + x, currentCell.y + y, currentCell.z), FloorTile, Floor);
                 }   
@@ -73,7 +74,7 @@ namespace Assets.Scripts.Environnement
         void GenerateWallTiles() {
             Vector3Int currentCell = Floor.WorldToCell(gridPos);
             //Nort wall
-            for (int x = 0; x < roomSizeX; x++)           
+            for (int x = 0; x < roomSizeInTiles.x; x++)           
             {               
                 GenerateRoomTiles(new Vector3Int(currentCell.x + x, currentCell.y, currentCell.z), WallTile, Wall);
         
@@ -81,7 +82,7 @@ namespace Assets.Scripts.Environnement
         }
         
         void GenerateRoomTiles(Vector3Int spawnPos, Tile tile, Tilemap tileMap) {
-            tileMap.SetTile(spawnPos, tile);
+            tileMap.SetTile(tileMap.WorldToCell(spawnPos), tile);
         }
 	}
 }
