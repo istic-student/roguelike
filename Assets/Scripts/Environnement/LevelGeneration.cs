@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.Environnement
 {
 	public class LevelGeneration : MonoBehaviour {
-		Vector2 worldSize = new Vector2(4,4);
+		Vector2 worldSize = new Vector2(3,3);
 		Room[,] rooms;
 		List<Vector2> takenPositions = new List<Vector2>();
 
