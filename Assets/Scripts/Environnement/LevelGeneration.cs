@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 using UnityEngine;
 
 namespace Assets.Scripts.Environnement
@@ -10,12 +11,17 @@ namespace Assets.Scripts.Environnement
 		List<Vector2> takenPositions = new List<Vector2>();
 
 		List<Room> roomList = new List<Room>();
+		List<RoomInstance> roomInstanceList = new List<RoomInstance>();
 		int gridSizeX, gridSizeY, numberOfRooms = 20;
 		public GameObject roomWhiteObj;
 
 		// specials rooms
 		private bool _BossRoomGenerated;
 		private int _NumberOfSecretRooms, _NumberOfTreasuresRooms;
+
+		// Tiles
+		public Tile wallTile;
+		public Tile floorTile;
 
 		void Start () {
 			// If there is too many rooms for the map size
@@ -33,6 +39,9 @@ namespace Assets.Scripts.Environnement
 			SetRoomDoors(); //assigns the doors where rooms would connect
 			ChangeSomeNormalRoomToSpecialRoom(); //Change normal rooms to special ones
 			DrawMap(); //instantiates objects to make up a map
+
+			// Generate physical map
+			CreateRoomsInstances();
 		}
 		void CreateRooms(){
 			//setup - Creating spawn room
@@ -61,7 +70,7 @@ namespace Assets.Scripts.Environnement
 						print("error: could not create with fewer neighbors than : " + NumberOfNeighbors(checkPos, takenPositions));
 				}
 				//finalize position
-				_Room = new Room(checkPos, RoomType.NormalRoom);
+				_Room = new Room(checkPos*5, RoomType.NormalRoom);
 				roomList.Add(_Room);
 				rooms[(int) checkPos.x + gridSizeX, (int) checkPos.y + gridSizeY] = _Room;
 				takenPositions.Insert(0,checkPos);
@@ -253,6 +262,13 @@ namespace Assets.Scripts.Environnement
 				}
 			}
 		}
-	}
 
+		void CreateRoomsInstances() {
+			// Convert all room to roomInstance			
+			foreach (var room in roomList)
+			{
+				roomInstanceList.Add(new RoomInstance(room.gridPos*5, room.RoomType, wallTile, floorTile));
+			}
+		}
+	}
 }

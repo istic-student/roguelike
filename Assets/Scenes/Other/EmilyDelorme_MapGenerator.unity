@@ -1050,6 +1050,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomWhiteObj: {fileID: 1975706786332780, guid: a1fe431a2bc4a2940b2503b8f131da18,
     type: 2}
+  wallTile: {fileID: 11400000, guid: b260dde6ac0caf54f9d19bf1b8348101, type: 2}
+  floorTile: {fileID: 11400000, guid: 715598662aecd2d4b91961d920839070, type: 2}
 --- !u!4 &678893741
 Transform:
   m_ObjectHideFlags: 0
@@ -2837,11 +2839,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4445808256327030, guid: 7c286c6d7b51251449b7537405041610, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4445808256327030, guid: 7c286c6d7b51251449b7537405041610, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4445808256327030, guid: 7c286c6d7b51251449b7537405041610, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3075,7 +3077,7 @@ GameObject:
   - component: {fileID: 2068719736}
   m_Layer: 0
   m_Name: Interractive
-  m_TagString: Interractive
+  m_TagString: Interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

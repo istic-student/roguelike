@@ -7,7 +7,7 @@ TagManager:
   - Floor
   - Wall
   - Animated
-  - Interractive
+  - Interactive
   layers:
   - Default
   - TransparentFX
