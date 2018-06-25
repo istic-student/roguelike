@@ -11,6 +11,8 @@ namespace Assets.Scripts.Interactive.Activable
 
         public RoomInstance LinkRoom;
 
+        public DoorType DoorType;
+
         private Orientation _Orientation;
         public void Start()
         {
@@ -25,7 +27,14 @@ namespace Assets.Scripts.Interactive.Activable
             player.transform.Translate(LinkRoom.gridPos);
             _mainCamera.transform.Translate(LinkRoom.gridPos);
             // todo : remove collision and play animation
-        }
+        }      
 
     }
+
+    public enum DoorType
+        {
+            normalDoor,
+            bossDoor,
+            secretDoor,
+        }
 }

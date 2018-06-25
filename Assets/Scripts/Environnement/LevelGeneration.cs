@@ -20,8 +20,7 @@ namespace Assets.Scripts.Environnement
 		private int _NumberOfSecretRooms, _NumberOfTreasuresRooms;
 
 		// Tiles
-		public Tile wallTile;
-		public Tile floorTile;
+		 public Tile WallTile, FloorTile, DoorTile;
 
 		void Start () {
 			// If there is too many rooms for the map size
@@ -233,6 +232,7 @@ namespace Assets.Scripts.Environnement
 			}
 		}
 		void SetRoomDoors(){
+			// TODO: refractor -> remove door bool and replace them by room only
 			for (int x = 0; x < ((gridSizeX * 2)); x++){
 				for (int y = 0; y < ((gridSizeY * 2)); y++){
 					if (rooms[x,y] == null){
@@ -243,21 +243,25 @@ namespace Assets.Scripts.Environnement
 						rooms[x,y].doorBot = false;
 					}else{
 						rooms[x,y].doorBot = (rooms[x,y-1] != null);
+						rooms[x,y].roomBot = rooms[x,y-1] != null ? rooms[x,y-1] : null;
 					}
 					if (y + 1 >= gridSizeY * 2){ //check bellow
 						rooms[x,y].doorTop = false;
 					}else{
 						rooms[x,y].doorTop = (rooms[x,y+1] != null);
+						rooms[x,y].roomTop = rooms[x,y+1] != null ? rooms[x,y+1] : null;
 					}
 					if (x - 1 < 0){ //check left
 						rooms[x,y].doorLeft = false;
 					}else{
 						rooms[x,y].doorLeft = (rooms[x - 1,y] != null);
+						rooms[x,y].roomTop = rooms[x - 1,y] != null ? rooms[x - 1,y] : null;
 					}
 					if (x + 1 >= gridSizeX * 2){ //check right
 						rooms[x,y].doorRight = false;
 					}else{
-						rooms[x,y].doorRight = (rooms[x+1,y] != null);
+						rooms[x,y].doorRight = (rooms[x + 1,y] != null);
+						rooms[x,y].roomTop = rooms[x + 1,y] != null ? rooms[x + 1,y] : null;
 					}
 				}
 			}
@@ -267,9 +271,32 @@ namespace Assets.Scripts.Environnement
 			// Convert all room to roomInstance			
 			foreach (var room in roomList)
 			{
-				Debug.Log(room.gridPos);
-				roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, wallTile, floorTile));
+				roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, WallTile, FloorTile, DoorTile));
 			}
+			// Adding connected room to each room
+			for (int i = 0; i < roomInstanceList.Count; i++)
+			{
+				RoomInstance room = roomInstanceList[i];	
+				if(roomList[i].roomBot != null) {
+					room.roomBot = roomInstanceList[roomList.IndexOf(roomList[i].roomBot)];
+				}
+				if(roomList[i].roomTop != null) {
+					room.roomTop = roomInstanceList[roomList.IndexOf(roomList[i].roomTop)];
+				}
+				if(roomList[i].roomLeft != null) {
+					room.roomLeft = roomInstanceList[roomList.IndexOf(roomList[i].roomLeft)];
+				}
+				if(roomList[i].roomRight != null) {
+					room.roomRight = roomInstanceList[roomList.IndexOf(roomList[i].roomRight)];
+				}
+			}
+			// Create doors
+			foreach (var room in roomInstanceList)
+			{	
+				room.CreateDoors();
+			}
+			
+			roomInstanceList[0].PlayerEnteringRoom();
 		}
 	}
 }
