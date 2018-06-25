@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - WallTile: {fileID: 11400000, guid: b260dde6ac0caf54f9d19bf1b8348101, type: 2}
   - FloorTile: {fileID: 11400000, guid: e9f3c95284a4af141a84a27fd0bc72ab, type: 2}
+  - DoorTile: {fileID: 11400000, guid: 8561d31d4167ca4499efd5e6a16cbc04, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
