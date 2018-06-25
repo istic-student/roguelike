@@ -17,7 +17,7 @@ namespace Assets.Scripts.Environnement
 
         float tilesSize;
 
-        Vector2 roomSizeInTiles = new Vector2(9,17);
+        Vector2 roomSizeInTiles = new Vector2(17,9);
 
         Tilemap Floor, Wall, Animated, Interactive;
 
@@ -26,6 +26,7 @@ namespace Assets.Scripts.Environnement
 			RoomType = _RoomType;
             WallTile = _WallTile;
             FloorTile = _FloorTile;
+            Start();
 		}
 
         void Start() {
@@ -56,6 +57,7 @@ namespace Assets.Scripts.Environnement
         }
 
         void GenerateRoomTiles() {
+            Debug.Log("Generation of rooms");
             GenerateFloorTiles();
             GenerateWallTiles();
         }
@@ -66,23 +68,25 @@ namespace Assets.Scripts.Environnement
             {                
                 for (int y = 0; y < roomSizeInTiles.y; y++)
                 {
-                    GenerateRoomTiles(new Vector3Int(currentCell.x + x, currentCell.y + y, currentCell.z), FloorTile, Floor);
+                  Floor.SetTile(new Vector3Int(currentCell.x + x, currentCell.y + y, currentCell.z), FloorTile);
                 }   
             }
         }
 
         void GenerateWallTiles() {
             Vector3Int currentCell = Floor.WorldToCell(gridPos);
-            //Nort wall
-            for (int x = 0; x < roomSizeInTiles.x; x++)           
+            //Nort and South wall
+            for (int x = 0; x < roomSizeInTiles.x+2; x++)           
             {               
-                GenerateRoomTiles(new Vector3Int(currentCell.x + x, currentCell.y, currentCell.z), WallTile, Wall);
-        
+                Wall.SetTile(new Vector3Int(currentCell.x + x - 1, currentCell.y - 1, currentCell.z), WallTile);   
+                Wall.SetTile(new Vector3Int(currentCell.x + x - 1, currentCell.y + (int) roomSizeInTiles.y, currentCell.z), WallTile);       
             }
-        }
-        
-        void GenerateRoomTiles(Vector3Int spawnPos, Tile tile, Tilemap tileMap) {
-            tileMap.SetTile(tileMap.WorldToCell(spawnPos), tile);
+
+            for (int y = 0; y < roomSizeInTiles.y + 1; y++)           
+            {               
+                Wall.SetTile(new Vector3Int(currentCell.x - 1, currentCell.y + y, currentCell.z), WallTile);   
+                Wall.SetTile(new Vector3Int(currentCell.x + (int) roomSizeInTiles.x, currentCell.y + y, currentCell.z), WallTile);       
+            }
         }
 	}
 }

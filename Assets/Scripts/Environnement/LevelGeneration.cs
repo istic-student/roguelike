@@ -70,7 +70,7 @@ namespace Assets.Scripts.Environnement
 						print("error: could not create with fewer neighbors than : " + NumberOfNeighbors(checkPos, takenPositions));
 				}
 				//finalize position
-				_Room = new Room(checkPos*5, RoomType.NormalRoom);
+				_Room = new Room(checkPos, RoomType.NormalRoom);
 				roomList.Add(_Room);
 				rooms[(int) checkPos.x + gridSizeX, (int) checkPos.y + gridSizeY] = _Room;
 				takenPositions.Insert(0,checkPos);
@@ -267,7 +267,8 @@ namespace Assets.Scripts.Environnement
 			// Convert all room to roomInstance			
 			foreach (var room in roomList)
 			{
-				roomInstanceList.Add(new RoomInstance(room.gridPos*5, room.RoomType, wallTile, floorTile));
+				Debug.Log(room.gridPos);
+				roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, wallTile, floorTile));
 			}
 		}
 	}
