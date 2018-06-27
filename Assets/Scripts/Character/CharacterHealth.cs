@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Abstract;
 using UnityEngine;
+using Assets.Scripts.Ennemies;
 
 namespace Assets.Scripts.Character
 {
@@ -23,9 +24,14 @@ namespace Assets.Scripts.Character
         protected override void Die()
         {
             Debug.Log("Die " + gameObject);
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
             if (_inventory != null)
                 _inventory.DropAllConsumables();
             OnHealthChange();
+            if (gameObject.GetComponent<EnemyController>() != null)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
     }
