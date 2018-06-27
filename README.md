@@ -50,9 +50,27 @@ See also the list of [contributors](https://github.com/your/project/contributors
 	- Melee weapon
 	- Ranged weapon
 		- Projectile
+	- Enemy weapon
 - [ ] UI
 	- Player UI
 - [ ] IA
+	- EnemyController
+
+		- Random movment
+
+		- Movment toward player
+
+		- Detection range
+
+		- Attack range
+
+		- Attack system
+
+	- Boss Necromancer
+
+		- 3 phase attack system
+
+		- Summon of skeletton minion
 - [ ] Online multiplayer
 - [ ] Procedural generation
 
