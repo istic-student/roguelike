@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 50539889454327116}
   - component: {fileID: 114912357770623338}
   - component: {fileID: 114937334038117016}
+  - component: {fileID: 95537180991217714}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -107,9 +108,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -118,6 +119,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &95537180991217714
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1803520760231660}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d5e89a8cd4d9e4facc09bb6060362f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114912357770623338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a723fa7e973bce24893e729180238a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Unlockers: []
+  Unlockers:
+  - {fileID: 114087195591000652, guid: fccc704ec50ba6b469748160d094e7b9, type: 2}
+  - {fileID: 114087195591000652, guid: fccc704ec50ba6b469748160d094e7b9, type: 2}
+  - {fileID: 114087195591000652, guid: fccc704ec50ba6b469748160d094e7b9, type: 2}
   MustHaveAllUnlockers: 1
   Actived: 0
 --- !u!114 &114937334038117016
@@ -179,8 +201,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.42438906, b: 0, a: 1}
+  m_Sprite: {fileID: 21300418, guid: 47c6a039472216d4384b29e942993912, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
