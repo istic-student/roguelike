@@ -32,7 +32,22 @@ namespace Assets.Scripts.Interactive.Activable
             Debug.Log("Open door");
 
             var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            player.transform.SetPositionAndRotation(new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,1), Quaternion.identity);
+            Vector3 posPlayer = new Vector3(0,0,0);
+            switch(Orientation) {
+					case Orientation.North:
+						posPlayer = new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y ,1);
+						break;
+					case Orientation.South:
+						posPlayer = new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y*2 - 1, 1);
+						break;
+					case Orientation.East:
+						posPlayer = new Vector3(LinkRoom.gridPos.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,1);
+						break;
+					case Orientation.West:
+						posPlayer = new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x * 2 - 1, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,1);
+						break;
+				}
+            player.transform.SetPositionAndRotation(posPlayer, Quaternion.identity);
             _mainCamera.transform.SetPositionAndRotation(new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,-15), Quaternion.identity);
             // todo : remove collision and play animation
         }      
