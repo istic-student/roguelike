@@ -102,6 +102,10 @@ MonoBehaviour:
   Unlockers: []
   MustHaveAllUnlockers: 0
   Actived: 0
+  DoorType: 0
+  gridPos: {x: 0, y: 0}
+  Prefab: {fileID: 1384825358245482}
+  Orientation: 0
 --- !u!212 &212611863360376508
 SpriteRenderer:
   m_ObjectHideFlags: 1
