@@ -220,7 +220,9 @@ namespace Assets.Scripts.Environnement
 				drawPos.x *= 16;//aspect ratio of map sprite
 				drawPos.y *= 8;
 				//create map obj and assign its variables
-				MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
+				GameObject mapPart = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity);
+				mapPart.name = "Map "+room.gridPos.x + ", "+room.gridPos.y + " - " + room.RoomType;
+				MapSpriteSelector mapper = mapPart.GetComponent<MapSpriteSelector>();
 				mapper.RoomType = room.RoomType;
 				mapper.up = room.doorTop;
 				mapper.down = room.doorBot;
@@ -270,7 +272,7 @@ namespace Assets.Scripts.Environnement
 			foreach (var room in roomList)
 			{
 				GameObject roomObject = new GameObject();	
-				roomObject.name = "Room "+room.gridPos.x+", "+room.gridPos.y;	
+				roomObject.name = "Room "+room.gridPos.x+", "+room.gridPos.y + " - " + room.RoomType;	
 				RoomInstance roomSriptInstance = roomObject.AddComponent(typeof(RoomInstance)) as RoomInstance;
 				roomSriptInstance.gridPos = room.gridPos*100;
 				roomSriptInstance.RoomType = room.RoomType;
@@ -376,9 +378,10 @@ namespace Assets.Scripts.Environnement
 				doorScript.LinkRoom = linkedRoom;
 				doorScript.Orientation = orientation;
 				doorScript.OwnerRoom = OwnerRoom;
+				door.name = "Door "+ OwnerRoom.gridPos.x/100 + ", " +OwnerRoom.gridPos.y/100 + "- " + orientation;
 				switch(orientation) {
 					case Orientation.North:
-						OwnerRoom.doorU = door;
+						OwnerRoom.doorU = door;						
 						break;
 					case Orientation.South:
 						OwnerRoom.doorD = door;
