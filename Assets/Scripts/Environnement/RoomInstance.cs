@@ -59,6 +59,9 @@ namespace Assets.Scripts.Environnement
                             break;
                         case RoomType.TreasureRoom:
                             Instantiate(Resources.Load("Prefabs/Interactive/Activable/Chest"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                            GameObject lightObject = Instantiate(GameObject.Find("TreasureLight"), new Vector3((float) (gridPos.x + roomSizeInTiles.x + 1), (float) (gridPos.y + roomSizeInTiles.y +1), 0), Quaternion.identity);
+                            lightObject.name = "Light-Treasure";
+                            lightObject.transform.parent = GameObject.Find("Room "+gridPos.x/100+", "+gridPos.y/100 + " - " + RoomType).transform;
                             break;
                         case RoomType.SecretRoom:
                             Instantiate(Resources.Load("Prefabs/Interactive/Activable/Shop"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
