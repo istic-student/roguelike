@@ -5,7 +5,7 @@ using Assets.Scripts.Player;
 
 namespace Assets.Scripts.Environnement
 {
-    public class RoomInstance {
+    public class RoomInstance : MonoBehaviour {
 		public Vector2 gridPos;
 		public RoomType RoomType;
         public RoomInstance roomTop, roomBot, roomLeft, roomRight ;
@@ -21,17 +21,7 @@ namespace Assets.Scripts.Environnement
         public Vector2 roomSizeInTiles = new Vector2(17,9);
 
         Tilemap Floor, Wall, Animated, Interactive;
-
-		public RoomInstance(Vector2 _gridPos, RoomType _RoomType, Tile _WallTile, Tile _FloorTile, Tile _DoorTile, MapSpriteSelector _Mapper){
-			gridPos = _gridPos;
-			RoomType = _RoomType;
-            WallTile = _WallTile;
-            FloorTile = _FloorTile;
-            DoorTile = _DoorTile;
-            Mapper = _Mapper;
-            Start();
-		}
-        
+		        
         public void SetRoomLeft(RoomInstance _RoomLeft) {
             roomLeft = _RoomLeft;
         }
@@ -40,9 +30,7 @@ namespace Assets.Scripts.Environnement
             Floor = GameObject.FindGameObjectWithTag("Floor").GetComponent<Tilemap>();
             Wall = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
             Animated = GameObject.FindGameObjectWithTag("Animated").GetComponent<Tilemap>();
-            Interactive = GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>();
-            
-            GenerateRoomTiles();
+            Interactive = GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>();          
         }
 
         public void PlayerEnteringRoom() {
@@ -51,7 +39,23 @@ namespace Assets.Scripts.Environnement
             PlayerController Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             Player.transform.Translate(new Vector2(gridPos.x+roomSizeInTiles.x,gridPos.y+roomSizeInTiles.y));*/    
 
-            Mapper.PlayerEnterInRoom();      
+            Mapper.PlayerEnterInRoom();
+            /*switch(RoomType) {					
+					case RoomType.NormalRoom:
+						
+						break;
+					case RoomType.BossRoom:
+						
+						break;
+					case RoomType.TreasureRoom:
+						
+						break;
+					case RoomType.SecretRoom:
+						
+						break;
+					default:						
+						break;
+				}*/
         }       
 
         void GenerateRoomTiles() {
