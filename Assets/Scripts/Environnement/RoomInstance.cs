@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Assets.Scripts.Interactive.Activable;
@@ -7,18 +5,18 @@ using Assets.Scripts.Player;
 
 namespace Assets.Scripts.Environnement
 {
-	public class RoomInstance : MonoBehaviour {
+    public class RoomInstance {
 		public Vector2 gridPos;
 		public RoomType RoomType;
-        public RoomInstance roomTop, roomBot, roomLeft, roomRight;
+        public RoomInstance roomTop, roomBot, roomLeft, roomRight ;
 
         public Tile WallTile, FloorTile, DoorTile;
 
-        Door doorU, doorD, doorL, dooR;
+        public GameObject doorU, doorD, doorL, dooR;
 
         float tilesSize;
 
-        Vector2 roomSizeInTiles = new Vector2(17,9);
+        public Vector2 roomSizeInTiles = new Vector2(17,9);
 
         Tilemap Floor, Wall, Animated, Interactive;
 
@@ -30,6 +28,10 @@ namespace Assets.Scripts.Environnement
             DoorTile = _DoorTile;
             Start();
 		}
+        
+        public void SetRoomLeft(RoomInstance _RoomLeft) {
+            roomLeft = _RoomLeft;
+        }
 
         void Start() {
             Floor = GameObject.FindGameObjectWithTag("Floor").GetComponent<Tilemap>();
@@ -45,26 +47,7 @@ namespace Assets.Scripts.Environnement
             MainCamera.transform.Translate(new Vector2(gridPos.x+roomSizeInTiles.x,gridPos.y+ roomSizeInTiles.y - 2));
             PlayerController Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             Player.transform.Translate(new Vector2(gridPos.x+roomSizeInTiles.x,gridPos.y+roomSizeInTiles.y));           
-        }
-        
-        public void CreateDoors() {
-            Vector2 spawnPosition = new Vector2(gridPos.x, gridPos.y);
-            PlaceDoor(spawnPosition, roomTop != null, doorU);
-            spawnPosition = new Vector2(gridPos.x, gridPos.y);
-            PlaceDoor(spawnPosition, roomBot != null, doorD);
-            spawnPosition = new Vector2(gridPos.x, gridPos.y);
-            PlaceDoor(spawnPosition, roomRight != null, dooR);
-            spawnPosition = new Vector2(gridPos.x, gridPos.y);
-            PlaceDoor(spawnPosition, roomLeft != null, doorL);
-        }
-
-        void PlaceDoor(Vector2 spawnPosition, bool createDoor, Door door) {
-            if(createDoor) {
-                Debug.Log("Install door");
-                Vector3Int currentCell = Interactive.WorldToCell(spawnPosition);
-                Interactive.SetTile(new Vector3Int(currentCell.x, currentCell.y, currentCell.z), DoorTile);
-            }
-        }
+        }       
 
         void GenerateRoomTiles() {
             GenerateFloorTiles();
@@ -96,6 +79,10 @@ namespace Assets.Scripts.Environnement
                 Wall.SetTile(new Vector3Int(currentCell.x - 1, currentCell.y + y, currentCell.z), WallTile);   
                 Wall.SetTile(new Vector3Int(currentCell.x + (int) roomSizeInTiles.x, currentCell.y + y, currentCell.z), WallTile);       
             }
+        }
+
+        public string printRoom() {
+            return "Salle: Pos = "+gridPos+", roomTop="+(roomTop != null)+", roomBot="+(roomBot  != null)+", roomLeft="+(roomLeft  != null)+", roomRight="+(roomRight  != null); 
         }
 	}
 }

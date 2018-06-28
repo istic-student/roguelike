@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
+using Assets.Scripts.Interactive.Activable;
 
 namespace Assets.Scripts.Environnement
 {
@@ -255,13 +256,13 @@ namespace Assets.Scripts.Environnement
 						rooms[x,y].doorLeft = false;
 					}else{
 						rooms[x,y].doorLeft = (rooms[x - 1,y] != null);
-						rooms[x,y].roomTop = rooms[x - 1,y] != null ? rooms[x - 1,y] : null;
+						rooms[x,y].roomLeft = rooms[x - 1,y] != null ? rooms[x - 1,y] : null;
 					}
 					if (x + 1 >= gridSizeX * 2){ //check right
 						rooms[x,y].doorRight = false;
 					}else{
 						rooms[x,y].doorRight = (rooms[x + 1,y] != null);
-						rooms[x,y].roomTop = rooms[x + 1,y] != null ? rooms[x + 1,y] : null;
+						rooms[x,y].roomRight = rooms[x + 1,y] != null ? rooms[x + 1,y] : null;
 					}
 				}
 			}
@@ -274,29 +275,51 @@ namespace Assets.Scripts.Environnement
 				roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, WallTile, FloorTile, DoorTile));
 			}
 			// Adding connected room to each room
-			for (int i = 0; i < roomInstanceList.Count; i++)
+			for (int i = 0; i < roomList.Count; i++)
 			{
-				RoomInstance room = roomInstanceList[i];	
-				if(roomList[i].roomBot != null) {
-					room.roomBot = roomInstanceList[roomList.IndexOf(roomList[i].roomBot)];
+				var roomInstance = roomInstanceList[i];
+				if(roomList[i].roomBot != null) {			
+					 roomInstance.roomBot = roomInstanceList[roomList.IndexOf(roomList[i].roomBot)];
 				}
 				if(roomList[i].roomTop != null) {
-					room.roomTop = roomInstanceList[roomList.IndexOf(roomList[i].roomTop)];
+					 roomInstance.roomTop = roomInstanceList[roomList.IndexOf(roomList[i].roomTop)];
 				}
 				if(roomList[i].roomLeft != null) {
-					room.roomLeft = roomInstanceList[roomList.IndexOf(roomList[i].roomLeft)];
+					 roomInstance.roomLeft = roomInstanceList[roomList.IndexOf(roomList[i].roomLeft)];
 				}
 				if(roomList[i].roomRight != null) {
-					room.roomRight = roomInstanceList[roomList.IndexOf(roomList[i].roomRight)];
+					 roomInstance.roomRight = roomInstanceList[roomList.IndexOf(roomList[i].roomRight)];
 				}
 			}
 			// Create doors
 			foreach (var room in roomInstanceList)
-			{	
-				room.CreateDoors();
+			{
+				CreateDoors(room);
 			}
-			
+			//Prefab = (GameObject) Instantiate(Resources.Load("Interactive/ActivableDoor"));
 			roomInstanceList[0].PlayerEnteringRoom();
 		}
+
+		public void CreateDoors(RoomInstance room) {            
+            Vector2 spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x, room.gridPos.y + room.roomSizeInTiles.y * 2);
+            //Debug.Log(roomTop != null);
+            PlaceDoor(spawnPosition, room.doorU, room.roomTop);
+            spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x, room.gridPos.y - 1);
+            PlaceDoor(spawnPosition, room.doorD, room.roomBot);
+            spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x * 2, room.gridPos.y + room.roomSizeInTiles.y);
+            PlaceDoor(spawnPosition, room.dooR, room.roomRight);
+            spawnPosition = new Vector2(room.gridPos.x -1, room.gridPos.y + room.roomSizeInTiles.y);
+            PlaceDoor(spawnPosition, room.doorL, room.roomLeft);
+        }
+
+        void PlaceDoor(Vector2 spawnPosition, GameObject door, RoomInstance linkedRoom) {
+            if(linkedRoom != null) {                
+                Vector3Int currentCell = GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>().WorldToCell(spawnPosition);
+                GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>().SetTile(new Vector3Int(currentCell.x, currentCell.y, currentCell.z), DoorTile);
+                door = (GameObject) Instantiate(Resources.Load("Interactive/Activable/Door"), new Vector3(spawnPosition.x, spawnPosition.y, 0), Quaternion.identity);
+				Door doorScript = door.GetComponent(typeof(Door)) as Door;
+				doorScript.LinkRoom = linkedRoom;
+            }
+        }
 	}
 }
