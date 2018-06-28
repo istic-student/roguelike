@@ -272,28 +272,53 @@ namespace Assets.Scripts.Environnement
 			// Convert all room to roomInstance			
 			foreach (var room in roomList)
 			{
+				GameObject roomObject = new GameObject();	
+				roomObject.name = "Room "+room.gridPos.x+", "+room.gridPos.y;	
+				RoomInstance roomSriptInstance = roomObject.AddComponent(typeof(RoomInstance)) as RoomInstance;
+				roomSriptInstance.gridPos = room.gridPos*100;
+				roomSriptInstance.RoomType = room.RoomType;
+				roomSriptInstance.DoorTile = DoorTile;
+				roomSriptInstance.Mapper = room.Mapper;
+
 				switch(room.RoomType) {					
 					case RoomType.NormalRoom:
-						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, NormalWallTile, NormalFloorTile, DoorTile, room.Mapper));
+						roomSriptInstance.WallTile=  NormalWallTile;
+						roomSriptInstance.FloorTile = NormalFloorTile;
 						break;
 					case RoomType.BossRoom:
-						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, BossWallTile, BossFloorTile, DoorTile, room.Mapper));
+						roomSriptInstance.WallTile=  BossWallTile;
+						roomSriptInstance.FloorTile = BossFloorTile;
 						break;
 					case RoomType.TreasureRoom:
-						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, TreasureWallTile,  TreasureFloorTile, DoorTile, room.Mapper));
+						roomSriptInstance.WallTile=  TreasureWallTile;
+						roomSriptInstance.FloorTile = TreasureFloorTile;
 						break;
 					case RoomType.SecretRoom:
-						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, TreasureWallTile, TreasureFloorTile, DoorTile, room.Mapper));
+						roomSriptInstance.WallTile=  TreasureWallTile;
+						roomSriptInstance.FloorTile = TreasureFloorTile;
 						break;
 					case RoomType.SpawnRoom:
-						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, NormalWallTile, NormalFloorTile, DoorTile, room.Mapper));
+						roomSriptInstance.WallTile=  NormalWallTile;
+						roomSriptInstance.FloorTile = NormalFloorTile;
 						break;
 					default:
-						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, NormalWallTile, NormalFloorTile, DoorTile, room.Mapper));
+						roomSriptInstance.WallTile=  NormalWallTile;
+						roomSriptInstance.FloorTile = NormalFloorTile;
 						break;
 				}
+				//roomObject.transform.Translate(roomInstance.gridPos);
+				//RoomInstance roomSriptInstance = roomObject.AddComponent(typeof(RoomInstance)) as RoomInstance;
+				//roomSriptInstance.gridPos = roomInstance.gridPos;
+				roomSriptInstance.Invoke("GenerateRoomTiles", 0);
+				roomInstanceList.Add(roomObject.GetComponent(typeof(RoomInstance)) as RoomInstance);
 				
 			}
+
+			/*for (int i = 0; i < roomInstanceList.Count; i++)
+			{
+				Instantiate(roomInstanceList[i], roomInstanceList[i].gridPos, Quaternion.identity);
+			}*/	
+				
 			// Adding connected room to each room
 			for (int i = 0; i < roomList.Count; i++)
 			{
