@@ -109,8 +109,13 @@ namespace Assets.Scripts.Environnement
             int nbObstacles = Random.Range(0, 8);
             for (int i = 0; i < nbObstacles; i++)
             {
-                Vector3Int currentCell = Floor.WorldToCell(gridPos);
-                Wall.SetTile(new Vector3Int(currentCell.x + 2 + Random.Range(0, 13), currentCell.y + 2 + Random.Range(0 ,5), currentCell.z), WallTile);   
+                Vector3Int currentCell = Wall.WorldToCell(gridPos);
+                int randomX = 2 + Random.Range(0, 13);
+                int randomY = 2 + Random.Range(0 ,5);
+                Wall.SetTile(new Vector3Int(currentCell.x + randomX, currentCell.y + randomY, currentCell.z), WallTile);
+                GameObject shaderObject = Instantiate(GameObject.Find("BlockShader"), new Vector3((float) (gridPos.x + randomX*2 + 1), (float) (gridPos.y + randomY*2 +1), currentCell.z), Quaternion.identity);
+                shaderObject.name = "BlockShader-"+i;
+                shaderObject.transform.parent = GameObject.Find("Room "+gridPos.x/100+", "+gridPos.y/100 + " - " + RoomType).transform;
             }
         }
 

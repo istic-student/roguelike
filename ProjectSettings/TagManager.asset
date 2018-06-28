@@ -20,9 +20,9 @@ TagManager:
   - 
   - 
   - Map
-  - 
-  - 
-  - 
+  - LightSources
+  - LightObstacles
+  - AmbientLight
   - 
   - 
   - 
