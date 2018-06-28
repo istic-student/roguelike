@@ -305,18 +305,10 @@ namespace Assets.Scripts.Environnement
 						roomSriptInstance.FloorTile = NormalFloorTile;
 						break;
 				}
-				//roomObject.transform.Translate(roomInstance.gridPos);
-				//RoomInstance roomSriptInstance = roomObject.AddComponent(typeof(RoomInstance)) as RoomInstance;
-				//roomSriptInstance.gridPos = roomInstance.gridPos;
 				roomSriptInstance.Invoke("GenerateRoomTiles", 0);
 				roomInstanceList.Add(roomObject.GetComponent(typeof(RoomInstance)) as RoomInstance);
 				
 			}
-
-			/*for (int i = 0; i < roomInstanceList.Count; i++)
-			{
-				Instantiate(roomInstanceList[i], roomInstanceList[i].gridPos, Quaternion.identity);
-			}*/	
 				
 			// Adding connected room to each room
 			for (int i = 0; i < roomList.Count; i++)
@@ -344,7 +336,6 @@ namespace Assets.Scripts.Environnement
 
 		public void CreateDoors(RoomInstance room) {            
             Vector2 spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x, room.gridPos.y + room.roomSizeInTiles.y * 2);
-            //Debug.Log(roomTop != null);
             PlaceDoor(spawnPosition, room.doorU, room.roomTop, Orientation.North, room);
             spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x, room.gridPos.y - 1);
             PlaceDoor(spawnPosition, room.doorD, room.roomBot, Orientation.South, room);
@@ -391,6 +382,18 @@ namespace Assets.Scripts.Environnement
 						break;
 					case Orientation.West:
 						OwnerRoom.doorL = door;
+						break;
+				}
+
+				switch(linkedRoom.RoomType) {					
+					case RoomType.SecretRoom:
+						doorScript.DoorType = DoorType.secretDoor;
+						break;
+					case RoomType.BossRoom:
+						doorScript.DoorType = DoorType.bossDoor;
+						break;
+					default:
+						doorScript.DoorType = DoorType.normalDoor;
 						break;
 				}
             }
