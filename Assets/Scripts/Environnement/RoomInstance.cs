@@ -52,6 +52,7 @@ namespace Assets.Scripts.Environnement
         void GenerateRoomTiles() {
             GenerateFloorTiles();
             GenerateWallTiles();
+            GenerateObstacles();
         }
 
         void GenerateFloorTiles() {
@@ -78,6 +79,15 @@ namespace Assets.Scripts.Environnement
             {               
                 Wall.SetTile(new Vector3Int(currentCell.x - 1, currentCell.y + y, currentCell.z), WallTile);   
                 Wall.SetTile(new Vector3Int(currentCell.x + (int) roomSizeInTiles.x, currentCell.y + y, currentCell.z), WallTile);       
+            }
+        }
+
+        void GenerateObstacles() {
+            int nbObstacles = Random.Range(0, 8);
+            for (int i = 0; i < nbObstacles; i++)
+            {
+                Vector3Int currentCell = Floor.WorldToCell(gridPos);
+                Wall.SetTile(new Vector3Int(currentCell.x + 2 + Random.Range(0, 13), currentCell.y + 2 + Random.Range(0 ,5), currentCell.z), WallTile);   
             }
         }
 
