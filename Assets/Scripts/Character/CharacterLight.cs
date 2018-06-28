@@ -12,27 +12,25 @@ namespace Assets.Scripts.Character
             _lightLine = GameObject.Find("LightLine");
             _characterController = GetComponent<CharacterController>();
         }
-
         public void Update() {
-            RotateLight(_characterController.Direction);
+            RotateLightPrecise();
         }
-
-        public void RotateLight(int orientation) {
-            switch(orientation) {
-                case 0:
-                    _lightLine.transform.eulerAngles =  new Vector3Int(0, 0, 0);
-                    break;
-                case 1:
-                    _lightLine.transform.eulerAngles =  new Vector3Int(0, 0, 270);
-                    break;
-                case 2:
-                    _lightLine.transform.eulerAngles =  new Vector3Int(0, 0, 180);
-                    break;
-                case 3:
-                    _lightLine.transform.eulerAngles =  new Vector3Int(0, 0, 90);
-                    break;
-            }
+        public void RotateLightPrecise() {
+            _lightLine.transform.eulerAngles =  new Vector3Int(0, 0, (int) getAngle(_characterController.preciseDirection.x, _characterController.preciseDirection.y));
         }
-
+        public float getAngle(float x, float y) {
+            if (x == 0 && y == 0)
+                return 180;
+            else if (x >= 0 && y > 0)
+                return (270 + (Mathf.Atan2(y, x) * 180 / Mathf.PI));
+            else if (x > 0 && y <= 0)
+                return (270 + (Mathf.Atan(y / x) * 180 / Mathf.PI));
+            else if (x <= 0 && y < 0)
+                return (90 + (Mathf.Atan(y / x) * 180 / Mathf.PI));
+            else if (x < 0 && y >= 0)
+                return ( 90 + (Mathf.Atan(y / x) * 180 / Mathf.PI));
+            else
+                return 180;
+        }
     }
 }

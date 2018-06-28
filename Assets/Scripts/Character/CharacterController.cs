@@ -53,7 +53,6 @@ namespace Assets.Scripts.Character
         {
             preciseDirection.x = axisHorizontal;
             preciseDirection.y = axisVertical;
-            
             if (Math.Abs(axisVertical) >= Math.Abs(axisHorizontal))
             {
                 if (axisVertical > 0)
