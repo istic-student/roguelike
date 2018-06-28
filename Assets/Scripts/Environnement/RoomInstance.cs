@@ -114,7 +114,7 @@ namespace Assets.Scripts.Environnement
             }
         }
 
-        public string printRoom() {
+        public override string ToString() {
             return "Salle: Pos = "+gridPos+", roomTop="+(roomTop != null)+", roomBot="+(roomBot  != null)+", roomLeft="+(roomLeft  != null)+", roomRight="+(roomRight  != null); 
         }
 	}

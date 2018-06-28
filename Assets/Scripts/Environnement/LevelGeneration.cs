@@ -268,7 +268,8 @@ namespace Assets.Scripts.Environnement
 			foreach (var room in roomList)
 			{
 				GameObject roomObject = new GameObject();	
-				roomObject.name = "Room "+room.gridPos.x+", "+room.gridPos.y + " - " + room.RoomType;	
+				roomObject.name = "Room "+room.gridPos.x+", "+room.gridPos.y + " - " + room.RoomType;
+				roomObject.transform.parent	 = GameObject.Find("Rooms").transform;
 				RoomInstance roomSriptInstance = roomObject.AddComponent(typeof(RoomInstance)) as RoomInstance;
 				roomSriptInstance.gridPos = room.gridPos*100;
 				roomSriptInstance.RoomType = room.RoomType;
@@ -327,6 +328,7 @@ namespace Assets.Scripts.Environnement
 			foreach (var room in roomInstanceList)
 			{
 				CreateDoors(room);
+				room.Mapper.transform.parent = GameObject.Find("Room "+room.gridPos.x/100+", "+room.gridPos.y/100 + " - " + room.RoomType).transform;
 			}
 
 			roomInstanceList[0].isRoomVisited = true;
@@ -363,6 +365,7 @@ namespace Assets.Scripts.Environnement
 						break;
 				}
                 door = (GameObject) Instantiate(Resources.Load("Prefabs/Interactive/Activable/Door"), spawnPos, Quaternion.identity);
+				door.transform.parent = GameObject.Find("Room "+OwnerRoom.gridPos.x/100+", "+OwnerRoom.gridPos.y/100 + " - " + OwnerRoom.RoomType).transform;
 				Door doorScript = door.GetComponent(typeof(Door)) as Door;
 				doorScript.LinkRoom = linkedRoom;
 				doorScript.Orientation = orientation;
