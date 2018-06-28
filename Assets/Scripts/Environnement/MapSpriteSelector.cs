@@ -11,10 +11,10 @@ namespace Assets.Scripts.Environnement
 				spULD, spRUL, spDRU, spLDR, spUDRL;
 		public bool up, down, left, right;
 		public RoomType RoomType = RoomType.NormalRoom;
-		public Color normalRoomColor, spawnRoomColor, BossRoomColor, TreasureRoomColor, SecretRoomColor ;
+		public Color normalRoomColor, spawnRoomColor, BossRoomColor, TreasureRoomColor, SecretRoomColor, PlayerInRoomColor;
 		Color mainColor;
 		SpriteRenderer rend;
-		void Start () {
+		public void Start () {
 			rend = GetComponent<SpriteRenderer>();
 			mainColor = normalRoomColor;
 			PickSprite();
@@ -73,6 +73,14 @@ namespace Assets.Scripts.Environnement
 			}else{
 				rend.sprite = spL;
 			}
+		}
+
+		public void PlayerEnterInRoom() {
+			rend.color = PlayerInRoomColor;
+		}
+
+		public void PlayerLeftRoom() {
+			PickColor();
 		}
 
 		void PickColor(){

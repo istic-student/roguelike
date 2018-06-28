@@ -11,6 +11,8 @@ namespace Assets.Scripts.Interactive.Activable
 
         public RoomInstance LinkRoom;
 
+        public RoomInstance OwnerRoom;
+
         public DoorType DoorType;
         public Vector2 gridPos;
 
@@ -18,9 +20,10 @@ namespace Assets.Scripts.Interactive.Activable
 
         public Orientation Orientation;
 
-        public Door(Vector2 _GridPos,  RoomInstance _LinkRoom) {
+        public Door(Vector2 _GridPos,  RoomInstance _LinkRoom,  RoomInstance _OwnerRoom) {
             gridPos = _GridPos;
-            LinkRoom =  _LinkRoom;            
+            LinkRoom =  _LinkRoom;   
+            OwnerRoom = _OwnerRoom;        
             Start();
         }
         public void Start()
@@ -47,6 +50,8 @@ namespace Assets.Scripts.Interactive.Activable
 						posPlayer = new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x * 2 - 1, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,1);
 						break;
 				}
+            OwnerRoom.Mapper.PlayerLeftRoom();
+            LinkRoom.PlayerEnteringRoom();
             player.transform.SetPositionAndRotation(posPlayer, Quaternion.identity);
             _mainCamera.transform.SetPositionAndRotation(new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,-15), Quaternion.identity);
             // todo : remove collision and play animation

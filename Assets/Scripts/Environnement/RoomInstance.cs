@@ -16,16 +16,19 @@ namespace Assets.Scripts.Environnement
 
         float tilesSize;
 
+        public MapSpriteSelector Mapper;
+
         public Vector2 roomSizeInTiles = new Vector2(17,9);
 
         Tilemap Floor, Wall, Animated, Interactive;
 
-		public RoomInstance(Vector2 _gridPos, RoomType _RoomType, Tile _WallTile, Tile _FloorTile, Tile _DoorTile){
+		public RoomInstance(Vector2 _gridPos, RoomType _RoomType, Tile _WallTile, Tile _FloorTile, Tile _DoorTile, MapSpriteSelector _Mapper){
 			gridPos = _gridPos;
 			RoomType = _RoomType;
             WallTile = _WallTile;
             FloorTile = _FloorTile;
             DoorTile = _DoorTile;
+            Mapper = _Mapper;
             Start();
 		}
         
@@ -43,10 +46,12 @@ namespace Assets.Scripts.Environnement
         }
 
         public void PlayerEnteringRoom() {
-            Camera MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();            
+            /*Camera MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();            
             MainCamera.transform.Translate(new Vector2(gridPos.x+roomSizeInTiles.x,gridPos.y+ roomSizeInTiles.y - 2));
             PlayerController Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            Player.transform.Translate(new Vector2(gridPos.x+roomSizeInTiles.x,gridPos.y+roomSizeInTiles.y));           
+            Player.transform.Translate(new Vector2(gridPos.x+roomSizeInTiles.x,gridPos.y+roomSizeInTiles.y));*/    
+
+            Mapper.PlayerEnterInRoom();      
         }       
 
         void GenerateRoomTiles() {

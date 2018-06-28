@@ -39,10 +39,8 @@ namespace Assets.Scripts.Environnement
 			CreateRooms(); //lays out the actual map			
 			SetRoomDoors(); //assigns the doors where rooms would connect
 			ChangeSomeNormalRoomToSpecialRoom(); //Change normal rooms to special ones
-			DrawMap(); //instantiates objects to make up a map
-
-			// Generate physical map
-			CreateRoomsInstances();
+			DrawMap(); //instantiates objects to make up a map			
+			CreateRoomsInstances(); // Generate physical map
 		}
 		void CreateRooms(){
 			//setup - Creating spawn room
@@ -231,6 +229,7 @@ namespace Assets.Scripts.Environnement
 				mapper.down = room.doorBot;
 				mapper.right = room.doorRight;
 				mapper.left = room.doorLeft;
+				room.Mapper = mapper;				
 			}
 		}
 		void SetRoomDoors(){
@@ -273,7 +272,7 @@ namespace Assets.Scripts.Environnement
 			// Convert all room to roomInstance			
 			foreach (var room in roomList)
 			{
-				roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, WallTile, FloorTile, DoorTile));
+				roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, WallTile, FloorTile, DoorTile, room.Mapper));
 			}
 			// Adding connected room to each room
 			for (int i = 0; i < roomList.Count; i++)
@@ -297,23 +296,21 @@ namespace Assets.Scripts.Environnement
 			{
 				CreateDoors(room);
 			}
-			//Prefab = (GameObject) Instantiate(Resources.Load("Interactive/ActivableDoor"));
-			roomInstanceList[0].PlayerEnteringRoom();
 		}
 
 		public void CreateDoors(RoomInstance room) {            
             Vector2 spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x, room.gridPos.y + room.roomSizeInTiles.y * 2);
             //Debug.Log(roomTop != null);
-            PlaceDoor(spawnPosition, room.doorU, room.roomTop, Orientation.North);
+            PlaceDoor(spawnPosition, room.doorU, room.roomTop, Orientation.North, room);
             spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x, room.gridPos.y - 1);
-            PlaceDoor(spawnPosition, room.doorD, room.roomBot, Orientation.South);
+            PlaceDoor(spawnPosition, room.doorD, room.roomBot, Orientation.South, room);
             spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x * 2, room.gridPos.y + room.roomSizeInTiles.y);
-            PlaceDoor(spawnPosition, room.dooR, room.roomRight, Orientation.East);
+            PlaceDoor(spawnPosition, room.dooR, room.roomRight, Orientation.East, room);
             spawnPosition = new Vector2(room.gridPos.x -1, room.gridPos.y + room.roomSizeInTiles.y);
-            PlaceDoor(spawnPosition, room.doorL, room.roomLeft, Orientation.West);
+            PlaceDoor(spawnPosition, room.doorL, room.roomLeft, Orientation.West, room);
         }
 
-        void PlaceDoor(Vector2 spawnPosition, GameObject door, RoomInstance linkedRoom, Orientation orientation) {
+        void PlaceDoor(Vector2 spawnPosition, GameObject door, RoomInstance linkedRoom, Orientation orientation, RoomInstance OwnerRoom) {
             if(linkedRoom != null) {                
                 Vector3Int currentCell = GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>().WorldToCell(spawnPosition);
                 GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>().SetTile(new Vector3Int(currentCell.x, currentCell.y, currentCell.z), DoorTile);
@@ -336,6 +333,7 @@ namespace Assets.Scripts.Environnement
 				Door doorScript = door.GetComponent(typeof(Door)) as Door;
 				doorScript.LinkRoom = linkedRoom;
 				doorScript.Orientation = orientation;
+				doorScript.OwnerRoom = OwnerRoom;
             }
         }
 	}

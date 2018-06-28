@@ -9,6 +9,8 @@ namespace Assets.Scripts.Environnement
 		public RoomType RoomType;
 		public bool doorTop, doorBot, doorLeft, doorRight;
 		public Room roomTop, roomBot, roomLeft, roomRight;
+		public MapSpriteSelector Mapper;
+
 		public Room(Vector2 _gridPos, RoomType _RoomType){
 			gridPos = _gridPos;
 			RoomType = _RoomType;
