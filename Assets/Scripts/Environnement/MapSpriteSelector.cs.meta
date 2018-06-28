@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 32061e7dde05ec04e96ad04816758912
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - spU: {fileID: 21300000, guid: c7819f663fd32ea4a909fc558a782366, type: 3}
+  - spD: {fileID: 21300000, guid: 2d5cef4f1c136714bac69db478275e54, type: 3}
+  - spR: {fileID: 21300000, guid: 7dd9ed293c5769042a3cc3ccf914b72e, type: 3}
+  - spL: {fileID: 21300000, guid: 1be95bf45af18c947af88845614c3935, type: 3}
+  - spUD: {fileID: 21300000, guid: 726d4adc2c35adf49a696520e3bb3c01, type: 3}
+  - spRL: {fileID: 21300000, guid: 6c4b0dcd7fe99814f827564a16e8d269, type: 3}
+  - spUR: {fileID: 21300000, guid: db48da81c2a4b704aa94a0c563bbbd43, type: 3}
+  - spUL: {fileID: 21300000, guid: 17ffd6230c49db44cb783fb1ff7ea752, type: 3}
+  - spDR: {instanceID: 0}
+  - spDL: {instanceID: 0}
+  - spULD: {instanceID: 0}
+  - spRUL: {instanceID: 0}
+  - spDRU: {instanceID: 0}
+  - spLDR: {instanceID: 0}
+  - spUDRL: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
