@@ -93,18 +93,18 @@ TextureImporter:
       name: rpd_tileset_0
       rect:
         serializedVersion: 2
-        x: 288
-        y: 124
+        x: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fde9f6fd40cd63d49b9ce32642eafda4
+      spriteID: 3873a919a4c43004b9feccb5e57c11f7
       vertices: []
       indices: 
       edges: []
@@ -113,18 +113,18 @@ TextureImporter:
       name: rpd_tileset_1
       rect:
         serializedVersion: 2
-        x: 320
-        y: 124
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7ff47d76e952b14aaf073c8429dc28d
+      spriteID: 85fa0c5258932ff49a324ea9ae0c083a
       vertices: []
       indices: 
       edges: []
@@ -133,18 +133,18 @@ TextureImporter:
       name: rpd_tileset_2
       rect:
         serializedVersion: 2
-        x: 352
-        y: 124
+        x: 64
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f36369e9092bc464cab35d3b8f2e4a35
+      spriteID: d245eff4c4e859443af39f9e1440337f
       vertices: []
       indices: 
       edges: []
@@ -153,18 +153,18 @@ TextureImporter:
       name: rpd_tileset_3
       rect:
         serializedVersion: 2
-        x: 384
-        y: 124
+        x: 96
+        y: 32
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 192f2a4026db50e46974d8222b5e25fd
+      spriteID: d183d24e653d0c14eaf4e94390d16e2f
       vertices: []
       indices: 
       edges: []
@@ -173,18 +173,18 @@ TextureImporter:
       name: rpd_tileset_4
       rect:
         serializedVersion: 2
-        x: 288
-        y: 156
+        x: 0
+        y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97297185f591fad4888ffd0a17bb17db
+      spriteID: b1235b3decd94a646a9d3a1c691ddc02
       vertices: []
       indices: 
       edges: []
@@ -193,18 +193,18 @@ TextureImporter:
       name: rpd_tileset_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 156
+        x: 32
+        y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7ba51a2fb5dbfe4e9c743b007eb467f
+      spriteID: 1928071f0280b72459df4f93fcecc62f
       vertices: []
       indices: 
       edges: []
@@ -213,18 +213,18 @@ TextureImporter:
       name: rpd_tileset_6
       rect:
         serializedVersion: 2
-        x: 352
-        y: 156
+        x: 64
+        y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 205f1c8c9b741ed47a9d6ff5341c5f47
+      spriteID: 2c0084834960dbc42948e6e729140cd6
       vertices: []
       indices: 
       edges: []
@@ -233,18 +233,18 @@ TextureImporter:
       name: rpd_tileset_7
       rect:
         serializedVersion: 2
-        x: 384
-        y: 156
+        x: 96
+        y: 0
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb08e3442a37b5e4ebc0ed616e8265ed
+      spriteID: 2b8ddf13b409a3e48b2910b2e81920b4
       vertices: []
       indices: 
       edges: []
