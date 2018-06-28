@@ -22,7 +22,7 @@ namespace Assets.Scripts.Environnement
 		private int _NumberOfSecretRooms, _NumberOfTreasuresRooms;
 
 		// Tiles
-		 public Tile WallTile, FloorTile, DoorTile;
+		 public Tile NormalWallTile, NormalFloorTile, DoorTile, BossWallTile, BossFloorTile, TreasureWallTile, TreasureFloorTile;
 
 		void Start () {
 			// If there is too many rooms for the map size
@@ -272,7 +272,27 @@ namespace Assets.Scripts.Environnement
 			// Convert all room to roomInstance			
 			foreach (var room in roomList)
 			{
-				roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, WallTile, FloorTile, DoorTile, room.Mapper));
+				switch(room.RoomType) {					
+					case RoomType.NormalRoom:
+						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, NormalWallTile, NormalFloorTile, DoorTile, room.Mapper));
+						break;
+					case RoomType.BossRoom:
+						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, BossWallTile, BossFloorTile, DoorTile, room.Mapper));
+						break;
+					case RoomType.TreasureRoom:
+						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, TreasureWallTile,  TreasureFloorTile, DoorTile, room.Mapper));
+						break;
+					case RoomType.SecretRoom:
+						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, TreasureWallTile, TreasureFloorTile, DoorTile, room.Mapper));
+						break;
+					case RoomType.SpawnRoom:
+						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, NormalWallTile, NormalFloorTile, DoorTile, room.Mapper));
+						break;
+					default:
+						roomInstanceList.Add(new RoomInstance(room.gridPos*100, room.RoomType, NormalWallTile, NormalFloorTile, DoorTile, room.Mapper));
+						break;
+				}
+				
 			}
 			// Adding connected room to each room
 			for (int i = 0; i < roomList.Count; i++)
