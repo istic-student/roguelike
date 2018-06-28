@@ -57,7 +57,9 @@ namespace Assets.Scripts.Environnement
         void GenerateRoomTiles() {
             GenerateFloorTiles();
             GenerateWallTiles();
-            GenerateObstacles();
+            if(RoomType.NormalRoom == RoomType) {
+                GenerateObstacles();
+            }            
         }
 
         void GenerateFloorTiles() {
