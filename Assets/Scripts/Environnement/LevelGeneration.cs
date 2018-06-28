@@ -33,7 +33,7 @@ namespace Assets.Scripts.Environnement
 			gridSizeX = Mathf.RoundToInt(worldSize.x);
 			gridSizeY = Mathf.RoundToInt(worldSize.y);
 
-			_NumberOfSecretRooms = Mathf.RoundToInt(numberOfRooms * 0.05f);
+			_NumberOfSecretRooms = numberOfRooms > 50 ? Mathf.RoundToInt(numberOfRooms * 0.05f) : Random.Range(0,100) < 10 ? 1 : 0;
 			_NumberOfTreasuresRooms = Mathf.RoundToInt(numberOfRooms * 0.10f);
 
 			CreateRooms(); //lays out the actual map			
