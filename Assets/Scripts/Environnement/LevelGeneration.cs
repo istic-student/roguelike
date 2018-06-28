@@ -328,6 +328,8 @@ namespace Assets.Scripts.Environnement
 			{
 				CreateDoors(room);
 			}
+
+			roomInstanceList[0].isRoomVisited = true;
 		}
 
 		public void CreateDoors(RoomInstance room) {            

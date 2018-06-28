@@ -21,6 +21,8 @@ namespace Assets.Scripts.Environnement
         public Vector2 roomSizeInTiles = new Vector2(17,9);
 
         Tilemap Floor, Wall, Animated, Interactive;
+
+        public bool isRoomVisited;
 		        
         public void SetRoomLeft(RoomInstance _RoomLeft) {
             roomLeft = _RoomLeft;
@@ -30,7 +32,8 @@ namespace Assets.Scripts.Environnement
             Floor = GameObject.FindGameObjectWithTag("Floor").GetComponent<Tilemap>();
             Wall = GameObject.FindGameObjectWithTag("Wall").GetComponent<Tilemap>();
             Animated = GameObject.FindGameObjectWithTag("Animated").GetComponent<Tilemap>();
-            Interactive = GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>();          
+            Interactive = GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>();
+            isRoomVisited = false;        
         }
 
         public void PlayerEnteringRoom() {
@@ -40,28 +43,31 @@ namespace Assets.Scripts.Environnement
             Player.transform.Translate(new Vector2(gridPos.x+roomSizeInTiles.x,gridPos.y+roomSizeInTiles.y));*/    
 
             Mapper.PlayerEnterInRoom();
-            switch(RoomType) {					
-					case RoomType.NormalRoom:
-						for (int i = 0; i < Random.Range(0,3); i++)
-                        {
-                            if(Random.Range(0,1) == 0)
-                                Instantiate(Resources.Load("Prefabs/Enemy Goblin"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
-                            else 
-                                Instantiate(Resources.Load("Prefabs/Enemy Skeleton"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
-                        }
-						break;
-					case RoomType.BossRoom:
-						Instantiate(Resources.Load("Prefabs/Boss Necromancer"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
-						break;
-					case RoomType.TreasureRoom:
-						Instantiate(Resources.Load("Prefabs/Interactive/Activable/Chest"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
-						break;
-					case RoomType.SecretRoom:
-						Instantiate(Resources.Load("Prefabs/Interactive/Activable/Shop"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
-						break;
-					default:						
-						break;
-				}
+            if(!isRoomVisited) {
+                switch(RoomType) {					
+                        case RoomType.NormalRoom:
+                            for (int i = 0; i < Random.Range(0,3); i++)
+                            {
+                                if(Random.Range(0,1) == 0)
+                                    Instantiate(Resources.Load("Prefabs/Enemy Goblin"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                                else 
+                                    Instantiate(Resources.Load("Prefabs/Enemy Skeleton"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                            }
+                            break;
+                        case RoomType.BossRoom:
+                            Instantiate(Resources.Load("Prefabs/Boss Necromancer"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                            break;
+                        case RoomType.TreasureRoom:
+                            Instantiate(Resources.Load("Prefabs/Interactive/Activable/Chest"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                            break;
+                        case RoomType.SecretRoom:
+                            Instantiate(Resources.Load("Prefabs/Interactive/Activable/Shop"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                            break;
+                        default:						
+                            break;
+                    }
+            }
+            isRoomVisited= true;
         }       
 
         void GenerateRoomTiles() {
