@@ -78,18 +78,19 @@ namespace Assets.Scripts.Environnement
 
 		void ChangeSomeNormalRoomToSpecialRoom() {
 			//boss room	
-				for (int i = 1; i < roomList.Count; i++)
-				{
-					if(roomList[i].RoomType == RoomType.NormalRoom && (
-					(roomList[i].doorBot && !roomList[i].doorLeft && !roomList[i].doorRight && !roomList[i].doorTop)
-					|| (!roomList[i].doorBot && roomList[i].doorLeft && !roomList[i].doorRight && !roomList[i].doorTop)
-					|| (!roomList[i].doorBot && !roomList[i].doorLeft && roomList[i].doorRight && !roomList[i].doorTop)
-					|| (!roomList[i].doorBot && !roomList[i].doorLeft && !roomList[i].doorRight && roomList[i].doorTop))) {
-						roomList[i].RoomType = RoomType.BossRoom;
-						break;
-					}
-
+			for (int i = 1; i < roomList.Count; i++)
+			{
+				if(roomList[i].RoomType == RoomType.NormalRoom && (
+				(roomList[i].doorBot && !roomList[i].doorLeft && !roomList[i].doorRight && !roomList[i].doorTop)
+				|| (!roomList[i].doorBot && roomList[i].doorLeft && !roomList[i].doorRight && !roomList[i].doorTop)
+				|| (!roomList[i].doorBot && !roomList[i].doorLeft && roomList[i].doorRight && !roomList[i].doorTop)
+				|| (!roomList[i].doorBot && !roomList[i].doorLeft && !roomList[i].doorRight && roomList[i].doorTop))) {
+					roomList[i].RoomType = RoomType.BossRoom;
+					break;
+				} else if(i==roomList.Count-1) { //Generate map again because there is no space for BossRoom
+					CreateRooms();
 				}
+			}
 
 			//secret room
 			if(_NumberOfSecretRooms >= 1) {	
