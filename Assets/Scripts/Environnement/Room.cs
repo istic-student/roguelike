@@ -16,7 +16,7 @@ namespace Assets.Scripts.Environnement
 			RoomType = _RoomType;
 		}
 
-		public string printRoom() {
+		public override string ToString() {
             return "Salle: Pos = "+gridPos+", roomTop="+(roomTop != null)+", roomBot="+(roomBot  != null)+", roomLeft="+(roomLeft  != null)+", roomRight="+(roomRight  != null); 
         }
 	}

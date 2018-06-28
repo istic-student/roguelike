@@ -86,10 +86,13 @@ namespace Assets.Scripts.Environnement
 				|| (!roomList[i].doorBot && !roomList[i].doorLeft && roomList[i].doorRight && !roomList[i].doorTop)
 				|| (!roomList[i].doorBot && !roomList[i].doorLeft && !roomList[i].doorRight && roomList[i].doorTop))) {
 					roomList[i].RoomType = RoomType.BossRoom;
+					_BossRoomGenerated = true;
 					break;
-				} else if(i==roomList.Count-1) { //Generate map again because there is no space for BossRoom
-					CreateRooms();
 				}
+			}
+
+			if(!_BossRoomGenerated) { // If no bossRoom generated, generate another map
+				CreateRooms();
 			}
 
 			//secret room
@@ -144,17 +147,9 @@ namespace Assets.Scripts.Environnement
 				bool UpDown = (Random.value < 0.5f);//randomly pick wether to look on hor or vert axis
 				bool positive = (Random.value < 0.5f);//pick whether to be positive or negative on that axis
 				if (UpDown){ //find the position bnased on the above bools
-					if (positive){
-						y += 1;
-					}else{
-						y -= 1;
-					}
+					y = positive ? y+1 : y-1;
 				}else{
-					if (positive){
-						x += 1;
-					}else{
-						x -= 1;
-					}
+					x = positive ? x+1 : x-1;
 				}
 				checkingPos = new Vector2(x,y);
 			}while (takenPositions.Contains(checkingPos) || x >= gridSizeX || x < -gridSizeX || y >= gridSizeY || y < -gridSizeY); //make sure the position is valid
