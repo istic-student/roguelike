@@ -13,6 +13,10 @@ namespace Assets.Scripts.Environnement
 			gridPos = _gridPos;
 			RoomType = _RoomType;
 		}
+
+		public string printRoom() {
+            return "Salle: Pos = "+gridPos+", roomTop="+(roomTop != null)+", roomBot="+(roomBot  != null)+", roomLeft="+(roomLeft  != null)+", roomRight="+(roomRight  != null); 
+        }
 	}
 
 }
