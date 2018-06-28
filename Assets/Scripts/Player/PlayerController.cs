@@ -17,6 +17,7 @@ namespace Assets.Scripts.Player
         private CharacterHealth _characterHealth;
         private CharacterController _characterController;
         private CharacterInteraction _characterInteraction;
+        private CharacterLight _characterLight;
 
         private void Start()
         {
@@ -25,6 +26,7 @@ namespace Assets.Scripts.Player
             _characterInteraction = GetComponent<CharacterInteraction>();
             _inventory = GetComponent<Character.Inventory.Inventory>();
             _characterHealth = GetComponent<CharacterHealth>();
+            _characterLight = GetComponent<CharacterLight>();
             _characterHealth.HealthChange += Notify;
             _inventory.InventoryChange += Notify;
         }
@@ -34,6 +36,7 @@ namespace Assets.Scripts.Player
             var axisHorizontal = Input.GetAxisRaw(Joystick.Horizontal);
             var axisVertical = Input.GetAxisRaw(Joystick.Vertical);
             _characterController.Move(axisHorizontal, axisVertical);
+            _characterLight.Update();
         }
 
         private void Update()

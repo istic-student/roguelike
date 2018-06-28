@@ -6,8 +6,15 @@ namespace Assets.Scripts.Character
     public class CharacterLight : MonoBehaviour
     {
         public GameObject _lightLine;
+
+        private CharacterController _characterController;
         void Start() {
             _lightLine = GameObject.Find("LightLine");
+            _characterController = GetComponent<CharacterController>();
+        }
+
+        public void Update() {
+            RotateLight(_characterController.Direction);
         }
 
         public void RotateLight(int orientation) {
