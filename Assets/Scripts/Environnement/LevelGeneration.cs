@@ -376,6 +376,20 @@ namespace Assets.Scripts.Environnement
 				doorScript.LinkRoom = linkedRoom;
 				doorScript.Orientation = orientation;
 				doorScript.OwnerRoom = OwnerRoom;
+				switch(orientation) {
+					case Orientation.North:
+						OwnerRoom.doorU = door;
+						break;
+					case Orientation.South:
+						OwnerRoom.doorD = door;
+						break;
+					case Orientation.East:
+						OwnerRoom.dooR = door;
+						break;
+					case Orientation.West:
+						OwnerRoom.doorL = door;
+						break;
+				}
             }
         }
 	}
