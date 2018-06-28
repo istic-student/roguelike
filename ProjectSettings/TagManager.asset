@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Animated
   - Interactive
+  - Rooms
+  - Ennemies
   layers:
   - Default
   - TransparentFX
