@@ -16,7 +16,7 @@ namespace Assets.Scripts.Interactive.Activable
 
         public GameObject Prefab;
 
-        private Orientation _Orientation;
+        public Orientation Orientation;
 
         public Door(Vector2 _GridPos,  RoomInstance _LinkRoom) {
             gridPos = _GridPos;
@@ -25,7 +25,6 @@ namespace Assets.Scripts.Interactive.Activable
         }
         public void Start()
         {
-            _Orientation = Orientation.North;
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();            
         }    
         protected override void Unlock()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
 using Assets.Scripts.Interactive.Activable;
+using Assets.Scripts.Utils;
 
 namespace Assets.Scripts.Environnement
 {
@@ -303,22 +304,38 @@ namespace Assets.Scripts.Environnement
 		public void CreateDoors(RoomInstance room) {            
             Vector2 spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x, room.gridPos.y + room.roomSizeInTiles.y * 2);
             //Debug.Log(roomTop != null);
-            PlaceDoor(spawnPosition, room.doorU, room.roomTop);
+            PlaceDoor(spawnPosition, room.doorU, room.roomTop, Orientation.North);
             spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x, room.gridPos.y - 1);
-            PlaceDoor(spawnPosition, room.doorD, room.roomBot);
+            PlaceDoor(spawnPosition, room.doorD, room.roomBot, Orientation.South);
             spawnPosition = new Vector2(room.gridPos.x + room.roomSizeInTiles.x * 2, room.gridPos.y + room.roomSizeInTiles.y);
-            PlaceDoor(spawnPosition, room.dooR, room.roomRight);
+            PlaceDoor(spawnPosition, room.dooR, room.roomRight, Orientation.East);
             spawnPosition = new Vector2(room.gridPos.x -1, room.gridPos.y + room.roomSizeInTiles.y);
-            PlaceDoor(spawnPosition, room.doorL, room.roomLeft);
+            PlaceDoor(spawnPosition, room.doorL, room.roomLeft, Orientation.West);
         }
 
-        void PlaceDoor(Vector2 spawnPosition, GameObject door, RoomInstance linkedRoom) {
+        void PlaceDoor(Vector2 spawnPosition, GameObject door, RoomInstance linkedRoom, Orientation orientation) {
             if(linkedRoom != null) {                
                 Vector3Int currentCell = GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>().WorldToCell(spawnPosition);
                 GameObject.FindGameObjectWithTag("Interactive").GetComponent<Tilemap>().SetTile(new Vector3Int(currentCell.x, currentCell.y, currentCell.z), DoorTile);
-                door = (GameObject) Instantiate(Resources.Load("Interactive/Activable/Door"), new Vector3(spawnPosition.x, spawnPosition.y, 0), Quaternion.identity);
+				Vector3 spawnPos = new Vector3(0,0,0);
+				switch(orientation) {
+					case Orientation.North:
+						spawnPos = new Vector3(spawnPosition.x, spawnPosition.y, 0);
+						break;
+					case Orientation.South:
+						spawnPos = new Vector3(spawnPosition.x, spawnPosition.y - 1f, 0);
+						break;
+					case Orientation.East:
+						spawnPos = new Vector3(spawnPosition.x + 1f, spawnPosition.y - 1f, 0);
+						break;
+					case Orientation.West:
+						spawnPos = new Vector3(spawnPosition.x, spawnPosition.y - 1f, 0);
+						break;
+				}
+                door = (GameObject) Instantiate(Resources.Load("Interactive/Activable/Door"), spawnPos, Quaternion.identity);
 				Door doorScript = door.GetComponent(typeof(Door)) as Door;
 				doorScript.LinkRoom = linkedRoom;
+				doorScript.Orientation = orientation;
             }
         }
 	}
