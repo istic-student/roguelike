@@ -33,7 +33,7 @@ namespace Assets.Scripts.Interactive.Activable
         protected override void Unlock()
         {
             Debug.Log("Open door");
-
+            
             var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             Vector3 posPlayer = new Vector3(0,0,0);
             switch(Orientation) {
@@ -53,7 +53,7 @@ namespace Assets.Scripts.Interactive.Activable
             OwnerRoom.Mapper.PlayerLeftRoom();
             LinkRoom.PlayerEnteringRoom();
             player.transform.SetPositionAndRotation(posPlayer, Quaternion.identity);
-            _mainCamera.transform.SetPositionAndRotation(new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,-15), Quaternion.identity);
+            _mainCamera.transform.SetPositionAndRotation(new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y + 3 ,-15), Quaternion.identity);
             // todo : remove collision and play animation
         }      
 

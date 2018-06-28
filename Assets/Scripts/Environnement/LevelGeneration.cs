@@ -77,8 +77,7 @@ namespace Assets.Scripts.Environnement
 		}
 
 		void ChangeSomeNormalRoomToSpecialRoom() {
-			//boss room
-			Debug.Log("Searching location for a boss room");		
+			//boss room	
 				for (int i = 1; i < roomList.Count; i++)
 				{
 					if(roomList[i].RoomType == RoomType.NormalRoom && (
@@ -93,8 +92,7 @@ namespace Assets.Scripts.Environnement
 				}
 
 			//secret room
-			if(_NumberOfSecretRooms >= 1) {		
-				 Debug.Log("Searching location for a secret room");		
+			if(_NumberOfSecretRooms >= 1) {	
 				for (int i = 1; i < roomList.Count; i++)
 				{
 					if(roomList[i].RoomType == RoomType.NormalRoom && (
@@ -115,8 +113,7 @@ namespace Assets.Scripts.Environnement
 			}
 
 			//treasure room
-			if(_NumberOfTreasuresRooms >= 1) {
-				Debug.Log("Searching location for a treasure room");			
+			if(_NumberOfTreasuresRooms >= 1) {		
 				for (int i = 1; i < roomList.Count; i++)
 				{
 					if(roomList[i].RoomType == RoomType.NormalRoom && (
@@ -374,7 +371,7 @@ namespace Assets.Scripts.Environnement
 						spawnPos = new Vector3(spawnPosition.x, spawnPosition.y - 1f, 0);
 						break;
 				}
-                door = (GameObject) Instantiate(Resources.Load("Interactive/Activable/Door"), spawnPos, Quaternion.identity);
+                door = (GameObject) Instantiate(Resources.Load("Prefabs/Interactive/Activable/Door"), spawnPos, Quaternion.identity);
 				Door doorScript = door.GetComponent(typeof(Door)) as Door;
 				doorScript.LinkRoom = linkedRoom;
 				doorScript.Orientation = orientation;

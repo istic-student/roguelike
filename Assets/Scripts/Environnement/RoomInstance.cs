@@ -40,12 +40,15 @@ namespace Assets.Scripts.Environnement
             Player.transform.Translate(new Vector2(gridPos.x+roomSizeInTiles.x,gridPos.y+roomSizeInTiles.y));*/    
 
             Mapper.PlayerEnterInRoom();
-            /*switch(RoomType) {					
+            switch(RoomType) {					
 					case RoomType.NormalRoom:
-						
+						for (int i = 0; i < Random.Range(0,1); i++)
+                        {
+                            Instantiate(Resources.Load("Prefabs/Enemy Goblin"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                        }
 						break;
 					case RoomType.BossRoom:
-						
+						Instantiate(Resources.Load("Prefabs/Boss Necromancer"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
 						break;
 					case RoomType.TreasureRoom:
 						
@@ -55,7 +58,7 @@ namespace Assets.Scripts.Environnement
 						break;
 					default:						
 						break;
-				}*/
+				}
         }       
 
         void GenerateRoomTiles() {
