@@ -42,19 +42,22 @@ namespace Assets.Scripts.Environnement
             Mapper.PlayerEnterInRoom();
             switch(RoomType) {					
 					case RoomType.NormalRoom:
-						for (int i = 0; i < Random.Range(0,1); i++)
+						for (int i = 0; i < Random.Range(0,3); i++)
                         {
-                            Instantiate(Resources.Load("Prefabs/Enemy Goblin"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                            if(Random.Range(0,1) == 0)
+                                Instantiate(Resources.Load("Prefabs/Enemy Goblin"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                            else 
+                                Instantiate(Resources.Load("Prefabs/Enemy Skeleton"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
                         }
 						break;
 					case RoomType.BossRoom:
 						Instantiate(Resources.Load("Prefabs/Boss Necromancer"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
 						break;
 					case RoomType.TreasureRoom:
-						
+						Instantiate(Resources.Load("Prefabs/Interactive/Activable/Chest"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
 						break;
 					case RoomType.SecretRoom:
-						
+						Instantiate(Resources.Load("Prefabs/Interactive/Activable/Shop"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
 						break;
 					default:						
 						break;
