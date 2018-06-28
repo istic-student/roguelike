@@ -476,9 +476,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomWhiteObj: {fileID: 1975706786332780, guid: a1fe431a2bc4a2940b2503b8f131da18,
     type: 2}
-  WallTile: {fileID: 11400000, guid: 715598662aecd2d4b91961d920839070, type: 2}
-  FloorTile: {fileID: 11400000, guid: 4978b364049d895479c3397656de5eb8, type: 2}
+  NormalWallTile: {fileID: 11400000, guid: b260dde6ac0caf54f9d19bf1b8348101, type: 2}
+  NormalFloorTile: {fileID: 11400000, guid: e9f3c95284a4af141a84a27fd0bc72ab, type: 2}
   DoorTile: {fileID: 11400000, guid: 7beba024ae6e6a246aff5fab4c29c5dc, type: 2}
+  BossWallTile: {fileID: 11400000, guid: 8eaec7efbb037724f811a3e7cb7d4653, type: 2}
+  BossFloorTile: {fileID: 11400000, guid: 0ddfc4c392e6d9c4d93c4de9c6527621, type: 2}
+  TreasureWallTile: {fileID: 11400000, guid: f7b6256634d921e44b2b0f6ea355ea61, type: 2}
+  TreasureFloorTile: {fileID: 11400000, guid: 93886fa1817759640b6d93862ae2930d, type: 2}
 --- !u!4 &678893741
 Transform:
   m_ObjectHideFlags: 0
