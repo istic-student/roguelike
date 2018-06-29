@@ -4,4 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Other/EmilyDelorme_MapGenerator.unity
+    guid: 2e8f4d5269b37fc4d821e2dbf4733f2e
+  m_configObjects: {}
