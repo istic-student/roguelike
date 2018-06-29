@@ -4,9 +4,8 @@
 
 > Rennes 1 University' bachelor project - roguelike made with Unity
 
-```
-Roguelike is a subgenre of role-playing video game characterized by a dungeon crawl through procedurally generated levels, turn-based gameplay, tile-based graphics, and permanent death of the player character. Most roguelikes are based on a high fantasy narrative, reflecting their influence from tabletop role playing games such as Dungeons & Dragons.
-```
+> Roguelike is a subgenre of role-playing video game characterized by a dungeon crawl through procedurally generated levels,  turn-based gameplay, tile-based graphics, and permanent death of the player character. Most roguelikes are based on a high fantasy narrative, reflecting their influence from tabletop role playing games such as Dungeons & Dragons.
+
 [Wikepadia](https://en.wikipedia.org/wiki/Roguelike)  
 
 [Short video of the game](https://www.youtube.com/watch?v=KGxtIgiZCT0&feature=youtu.be)
