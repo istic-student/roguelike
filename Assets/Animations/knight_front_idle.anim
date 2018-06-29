@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: archer_left_idle
+  m_Name: knight_front_idle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,9 +19,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 78d01846c906e88419759f369ee8b664, type: 3}
+      value: {fileID: 21300002, guid: 906d2862f822508438976e33e9130dbc, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: c7b71ea1127ab0641a56ee7f09235ca6, type: 3}
+      value: {fileID: 21300008, guid: 906d2862f822508438976e33e9130dbc, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -41,8 +41,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 78d01846c906e88419759f369ee8b664, type: 3}
-    - {fileID: 21300000, guid: c7b71ea1127ab0641a56ee7f09235ca6, type: 3}
+    - {fileID: 21300002, guid: 906d2862f822508438976e33e9130dbc, type: 3}
+    - {fileID: 21300008, guid: 906d2862f822508438976e33e9130dbc, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
