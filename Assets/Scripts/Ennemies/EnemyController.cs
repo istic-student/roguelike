@@ -44,7 +44,7 @@ namespace Assets.Scripts.Ennemies
             _playerDistance = 150;
             _playerToChase = 0;
             _enemyDetectionRange = 10;
-            _enemyAttackRange = 2;
+            _enemyAttackRange = 4;
             waitFrameToAttack = 0;
             waitFrameToWalk = 0;
             randomX = 0; randomY = 0;

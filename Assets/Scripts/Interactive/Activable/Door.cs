@@ -15,9 +15,6 @@ namespace Assets.Scripts.Interactive.Activable
 
         public DoorType DoorType;
         public Vector2 gridPos;
-
-        public GameObject Prefab;
-
         public Orientation Orientation;
 
         public Door(Vector2 _GridPos,  RoomInstance _LinkRoom,  RoomInstance _OwnerRoom) {
@@ -30,10 +27,21 @@ namespace Assets.Scripts.Interactive.Activable
         {
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();            
         }    
+
+        void OnTriggerEnter(Collider other) {
+             Debug.Log("Pass door");
+             if(other.name.Equals("Player"))
+                PlayerChangeRoom();
+        }
+        
         protected override void Unlock()
         {
-            Debug.Log("Open door");
-            
+            Debug.Log("Open door");           
+            PlayerChangeRoom();
+            // todo : remove collision and play animation
+        }      
+
+        void PlayerChangeRoom() {
             var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             Vector3 posPlayer = new Vector3(0,0,0);
             switch(Orientation) {
@@ -54,8 +62,7 @@ namespace Assets.Scripts.Interactive.Activable
             LinkRoom.PlayerEnteringRoom();
             player.transform.SetPositionAndRotation(posPlayer, Quaternion.identity);
             _mainCamera.transform.SetPositionAndRotation(new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y + 3 ,-15), Quaternion.identity);
-            // todo : remove collision and play animation
-        }      
+        }
 
     }
 
