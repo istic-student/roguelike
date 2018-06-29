@@ -268,6 +268,7 @@ namespace Assets.Scripts.Environnement
 			// Convert all room to roomInstance			
 			foreach (var room in roomList)
 			{
+				// Create gameobject RoomInstance
 				GameObject roomObject = new GameObject();	
 				roomObject.name = "Room "+room.gridPos.x+", "+room.gridPos.y + " - " + room.RoomType;
 				roomObject.transform.parent	 = GameObject.Find("Rooms").transform;
