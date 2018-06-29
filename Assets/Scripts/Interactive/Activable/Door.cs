@@ -47,13 +47,13 @@ namespace Assets.Scripts.Interactive.Activable
             Vector3 posPlayer = new Vector3(0,0,0);
             switch(Orientation) {
 					case Orientation.North:
-						posPlayer = new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y ,1);
+						posPlayer = new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y + 1 ,1);
 						break;
 					case Orientation.South:
 						posPlayer = new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y*2 - 1, 1);
 						break;
 					case Orientation.East:
-						posPlayer = new Vector3(LinkRoom.gridPos.x, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,1);
+						posPlayer = new Vector3(LinkRoom.gridPos.x + 1, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,1);
 						break;
 					case Orientation.West:
 						posPlayer = new Vector3(LinkRoom.gridPos.x + LinkRoom.roomSizeInTiles.x * 2 - 1, LinkRoom.gridPos.y + LinkRoom.roomSizeInTiles.y ,1);

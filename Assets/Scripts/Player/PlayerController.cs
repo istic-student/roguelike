@@ -36,7 +36,8 @@ namespace Assets.Scripts.Player
             var axisHorizontal = Input.GetAxisRaw(Joystick.Horizontal);
             var axisVertical = Input.GetAxisRaw(Joystick.Vertical);
             _characterController.Move(axisHorizontal, axisVertical);
-            _characterLight.Update();
+            if(_characterLight != null)
+                _characterLight.Update();
         }
 
         private void Update()
