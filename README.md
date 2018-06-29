@@ -72,7 +72,21 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 		- Summon of skeletton minion
 - [ ] Online multiplayer
-- [ ] Procedural generation
+- [x] Procedural generation
+	- Generation like the binding of isaac
+	- Room Types
+		- Normal Room
+		- Treasure Room
+		- Boss Room
+		- Secret Room
+	- Obstacles
+	- Enemmies spawn when entering room for the first time
+- [x] Shaders and Light
+	- Player produce lights
+		- Directionnal ligh
+		- Round light around the player
+	- Room obstacles generate shadow
+	
 
 ## Screenshot
 
