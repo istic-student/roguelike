@@ -86,8 +86,8 @@ BoxCollider2D:
     adaptiveTiling: 1
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
-  m_EdgeRadius: 0
+  m_Size: {x: 5, y: 5}
+  m_EdgeRadius: 0.5
 --- !u!114 &114020186627119416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,7 +106,6 @@ MonoBehaviour:
   OwnerRoom: {fileID: 0}
   DoorType: 0
   gridPos: {x: 0, y: 0}
-  Prefab: {fileID: 0}
   Orientation: 0
 --- !u!212 &212611863360376508
 SpriteRenderer:

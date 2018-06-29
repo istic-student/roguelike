@@ -20,7 +20,7 @@ namespace Assets.Scripts.Character
         }
         
         public float getAngle(float x, float y) {
-            if (x == 0 && y == 0)
+            if ((x == 0 && y == 0) || (x == 0 && y == -1))
                 return 180;
             else if (x >= 0 && y > 0)
                 return (270 + (Mathf.Atan2(y, x) * 180 / Mathf.PI));
@@ -29,7 +29,7 @@ namespace Assets.Scripts.Character
             else if (x <= 0 && y < 0)
                 return (90 + (Mathf.Atan(y / x) * 180 / Mathf.PI));
             else if (x < 0 && y >= 0)
-                return ( 90 + (Mathf.Atan(y / x) * 180 / Mathf.PI));
+                return ( 90 + (Mathf.Atan(y / x) * 180 / Mathf.PI));            
             else
                 return 180;
         }

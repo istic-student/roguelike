@@ -30,13 +30,14 @@ namespace Assets.Scripts.Interactive.Activable
 
         void OnTriggerEnter(Collider other) {
              Debug.Log("Pass door");
-             if(other.name.Equals("Player"))
+             if(other.gameObject.CompareTag("Player"))
                 PlayerChangeRoom();
         }
         
         protected override void Unlock()
         {
-            Debug.Log("Open door");           
+            Debug.Log("Open door");
+            Actived = false;   
             PlayerChangeRoom();
             // todo : remove collision and play animation
         }      
