@@ -48,11 +48,13 @@ namespace Assets.Scripts.Environnement
                         case RoomType.NormalRoom:
                             for (int i = 0; i < Random.Range(0,3); i++)
                             {
+                                 GameObject ennemy;
                                 if(Random.Range(0,100) > 50)
-                                    Instantiate(Resources.Load("Prefabs/Enemy Goblin"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
+                                    ennemy = Instantiate(Resources.Load("Prefabs/Enemy Goblin"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity) as GameObject;
                                 else 
-                                    Instantiate(Resources.Load("Prefabs/Enemy Skeleton"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
-                            }
+                                    ennemy = Instantiate(Resources.Load("Prefabs/Enemy Skeleton"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity)  as GameObject;
+                                ennemy.transform.parent = GameObject.Find("Room "+gridPos.x/100+", "+gridPos.y/100 + " - " + RoomType).transform;
+                            }                            
                             break;
                         case RoomType.BossRoom:
                             Instantiate(Resources.Load("Prefabs/Boss Necromancer"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
