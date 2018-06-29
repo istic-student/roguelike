@@ -90,14 +90,16 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 ## Screenshot
 
-![Map generation](https://i.imgur.com/N7jzmkU.png")
-![Map generation](https://i.imgur.com/azAYkcp.png")
-![Map generation](https://i.imgur.com/rYynkUV.png")  
+![Map generation](https://i.imgur.com/N7jzmkU.png)
+![Map generation](https://i.imgur.com/azAYkcp.png)
+![Map generation](https://i.imgur.com/rYynkUV.png)  
 Legend:
 - Blue: spawn
 - Yellow : treasure room
 - Pink: secret room
 - Red: boss room
+
+[![Demo lightt](https://i.imgur.com/KNU563K.png)](https://imgur.com/a/oHPyaKJ)
 
 ## License
 
