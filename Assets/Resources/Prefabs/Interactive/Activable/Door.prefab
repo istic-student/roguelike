@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 1
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &114020186627119416
 MonoBehaviour:
@@ -102,6 +102,8 @@ MonoBehaviour:
   Unlockers: []
   MustHaveAllUnlockers: 0
   Actived: 0
+  LinkRoom: {fileID: 0}
+  OwnerRoom: {fileID: 0}
   DoorType: 0
   gridPos: {x: 0, y: 0}
   Prefab: {fileID: 0}
