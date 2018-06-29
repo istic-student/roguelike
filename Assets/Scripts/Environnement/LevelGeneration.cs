@@ -41,6 +41,7 @@ namespace Assets.Scripts.Environnement
 			ChangeSomeNormalRoomToSpecialRoom(); //Change normal rooms to special ones
 			DrawMap(); //instantiates objects to make up a map			
 			CreateRoomsInstances(); // Generate physical map
+			Debug.Log("Map Generated");
 		}
 		void CreateRooms(){
 			//setup - Creating spawn room
@@ -92,7 +93,7 @@ namespace Assets.Scripts.Environnement
 			}
 
 			if(!_BossRoomGenerated) { // If no bossRoom generated, generate another map
-				CreateRooms();
+				Start();
 			}
 
 			//secret room

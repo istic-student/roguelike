@@ -18,6 +18,7 @@ namespace Assets.Scripts.Character
         public void RotateLightPrecise() {
             _lightLine.transform.eulerAngles =  new Vector3Int(0, 0, (int) getAngle(_characterController.preciseDirection.x, _characterController.preciseDirection.y));
         }
+        
         public float getAngle(float x, float y) {
             if (x == 0 && y == 0)
                 return 180;
