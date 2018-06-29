@@ -25,6 +25,26 @@ This project requires the following softwares/modules/libraries:
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
+## Controls
+
+### Keyboard
+
+- Up : Z
+- Down : S
+- Left : Q
+- Right : D
+- Action: A
+- Take object: E
+- attack: Space
+
+### Controller
+
+- Move: Left Joystick
+- Action: X
+- Take object: B
+- attack: Y
+
+
 ## Features
 
 - [x] Player controller (Keyboard and Gamepad)
