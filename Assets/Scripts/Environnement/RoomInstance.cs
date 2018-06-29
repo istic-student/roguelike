@@ -48,7 +48,7 @@ namespace Assets.Scripts.Environnement
                         case RoomType.NormalRoom:
                             for (int i = 0; i < Random.Range(0,3); i++)
                             {
-                                if(Random.Range(0,1) == 0)
+                                if(Random.Range(0,100) > 50)
                                     Instantiate(Resources.Load("Prefabs/Enemy Goblin"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
                                 else 
                                     Instantiate(Resources.Load("Prefabs/Enemy Skeleton"), new Vector3(gridPos.x+roomSizeInTiles.x, gridPos.y + roomSizeInTiles.y, 0), Quaternion.identity);
